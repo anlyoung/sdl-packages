@@ -1,0 +1,25 @@
+controller_list:
+  - name: fake_ur_arm_controller
+    type: $(arg execution_type)
+    joints:
+      - ur_arm_shoulder_pan_joint
+      - ur_arm_shoulder_lift_joint
+      - ur_arm_elbow_joint
+      - ur_arm_wrist_1_joint
+      - ur_arm_wrist_2_joint
+      - ur_arm_wrist_3_joint
+  - name: fake_sdl_robot_controller
+    type: $(arg execution_type)
+    joints:
+      - virtual_joint
+      - left_wheel_joint
+      - right_wheel_joint
+      - ur_arm_shoulder_pan_joint
+      - ur_arm_shoulder_lift_joint
+      - ur_arm_elbow_joint
+      - ur_arm_wrist_1_joint
+      - ur_arm_wrist_2_joint
+      - ur_arm_wrist_3_joint
+initial:  # Define initial robot poses.
+  - group: ur_arm
+    pose: home_pose
