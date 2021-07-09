@@ -7,22 +7,33 @@ Assuming ROS Melodic is installed.
 
 Add ROS descriptions for the robots we are using
 
-`sudo apt-get install ros-melodic-universal-robot`
-`sudo apt install ros-noetic-mir-robot`
+* Install the Universal Robot package
+  * For ROS Melodic, you will need to build from source:
+  ```
+  cd ~/catkin_ws/src
+  git clone -b melodic-devel https://github.com/ros-industrial/universal_robot.git
+  catkin_make
+  ```
+* `sudo apt install ros-noetic-mir-robot`
 
-Create a workspace for the project
+Create a workspace for the project:
 
 `mkdir -p catkin_ws/src`
 
-Go into the workspace and clone the repository
+Go into the workspace and clone the repository:
+
 `cd catkin_ws/src`
+
 `git clone https://github.com/dsquez/sdl-packages.git`
 
-Go back to src and build
+Go back to src and build:
+
 `cd catkin_ws`
+
 `catkin_make`
 
-Source the new workspace
+Source the new workspace:
+
 `source catkin_ws/devel/setup.bash`
 
 ## Running
