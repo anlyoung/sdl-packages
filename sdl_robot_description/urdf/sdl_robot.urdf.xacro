@@ -5,17 +5,12 @@
   <!-- common stuff -->
   <xacro:include filename="$(find sdl_robot_description)/urdf/common.gazebo.xacro" />
 
-  
-
   <!-- mir-->
   <xacro:include filename="$(find sdl_robot_description)/urdf/mir.urdf.xacro"/>
 
-  <!-- ur5e -->
-  <xacro:include filename="$(find sdl_robot_description)/urdf/ur5e.urdf.xacro" />
+  <!-- ur5e and gripper -->
+  <xacro:include filename="$(find sdl_robot_description)/urdf/ur5e_and_2f140.urdf" />
 
-
-  <!-- arm -->
-  <xacro:ur5e_robot prefix="ur_arm_" joint_limited="false"/>
 
   <!-- <link name="world" />
 
