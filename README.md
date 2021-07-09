@@ -7,22 +7,33 @@ Assuming ROS Melodic is installed.
 
 Add ROS descriptions for the robots we are using
 
-`sudo apt-get install ros-melodic-universal-robot`
-`sudo apt install ros-noetic-mir-robot`
+* Install the Universal Robot package
+  * For ROS Melodic, you will need to build from source:
+  ```
+  cd ~/catkin_ws/src
+  git clone -b melodic-devel https://github.com/ros-industrial/universal_robot.git
+  catkin_make
+  ```
+* `sudo apt install ros-noetic-mir-robot`
 
-Create a workspace for the project
+Create a workspace for the project:
 
 `mkdir -p catkin_ws/src`
 
-Go into the workspace and clone the repository
+Go into the workspace and clone the repository:
+
 `cd catkin_ws/src`
+
 `git clone https://github.com/dsquez/sdl-packages.git`
 
-Go back to src and build
+Go back to src and build:
+
 `cd catkin_ws`
+
 `catkin_make`
 
-Source the new workspace
+Source the new workspace:
+
 `source catkin_ws/devel/setup.bash`
 
 ## Running
@@ -33,3 +44,17 @@ To launch the gazebo simulaion, run
 `roslaunch sdl_gazebo sdl_robot.launch`
 
 Moveit is not currently working (7 July 2021)
+
+## Components
+UR5e Arm
+[Robotiq Adaptive Robot Gripper, 2F-140](https://robotiq.com/products/2f85-140-adaptive-robot-gripper?ref=nav_product_new_button): [URDF](https://github.com/Improbable-AI/airobot/blob/master/src/airobot/urdfs/ur5e_2f140_pybullet.urdf)
+
+EPick Kit for e-Series from UR / 1 cup
+
+Dual Robotiq Adaptive Robot Gripper Adapter
+
+MiR200 (with two batteries)
+
+MiR Autonomous Charger (24V)
+
+MiR/UR Vention Mounting Module for UR5e, MiR200
