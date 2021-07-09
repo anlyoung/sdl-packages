@@ -11,6 +11,9 @@
   <!-- ur5e and gripper -->
   <xacro:include filename="$(find sdl_robot_description)/urdf/ur5e_and_2f140.urdf" />
 
+  <!-- camera -->
+  <xacro:include filename="$(find sdl_robot_description)/urdf/camera.urdf.xacro" />
+
 
   <!-- <link name="world" />
 
