@@ -38,10 +38,17 @@ Source the new workspace:
 
 ## Running
 To see the rviz visualization, make sure ros and the workspace are sourced and run
+
 `roslaunch sdl_robot_description view_sdl.launch`
 
 To launch the gazebo simulaion, run
+
 `roslaunch sdl_gazebo sdl_robot.launch`
+
+### Controlling with Python
+Once the gazebo simulation is running, execute
+
+`python sdl_gazebo/python-nodes/demo.py`
 
 Moveit is not currently working (7 July 2021)
 
