@@ -66,3 +66,9 @@ MiR200 (with two batteries)
 MiR Autonomous Charger (24V)
 
 MiR/UR Vention Mounting Module for UR5e, MiR200
+
+## Useful Links
+[Creating Moveit config file](http://docs.ros.org/en/melodic/api/moveit_tutorials/html/doc/setup_assistant/setup_assistant_tutorial.html)
+[Depth Camera integration](http://gazebosim.org/tutorials?tut=ros_depth_camera&cat=connect_ros)
+[ROS plugin list](http://gazebosim.org/tutorials?tut=ros_gzplugins&cat=connect_ros)
+[PointCloud2 message](http://docs.ros.org/en/melodic/api/sensor_msgs/html/msg/PointCloud2.html)
