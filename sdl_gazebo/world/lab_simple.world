@@ -16,6 +16,11 @@
             <mesh><uri>file:///home/derek/ANL/anl-sim-ws/src/sdl_packages/sdl_gazebo/meshes/lab_simple.dae</uri></mesh>
           </geometry>
         </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh><uri>file:///home/derek/ANL/anl-sim-ws/src/sdl_packages/sdl_gazebo/meshes/lab_simple.dae</uri></mesh>
+          </geometry>
+        </collision>
       </link>
     </model>
   </world>
