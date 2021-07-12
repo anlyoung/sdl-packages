@@ -4,12 +4,10 @@
        - If the ROS parameter 'tf_prefix' is set, it prepends the
        - tf_prefix in front of the frameName.
        - Otherwise, it prepends the robotNamespace.
-
        The robotNamespace gets automatically set if you start the
        spawn_model node inside a namespace. In this case, set
        prepend_prefix_to_laser_frame to 'false', otherwise the
        resulting frameName will have two prefixes prepended.
-
        If you don't start spawn_model inside a namespace but have a
        non-empty prefix, set prepend_prefix_to_laser_frame to 'true'. -->
   <xacro:arg name="prepend_prefix_to_laser_frame" default="false" />
@@ -66,7 +64,8 @@
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://mir_description/meshes/visual/wheel.stl" />
+          <cylinder radius="${mir_100_act_wheel_radius}" length="0.1"/>
+          <!-- <mesh filename="package://mir_description/meshes/visual/wheel.stl" /> -->
         </geometry>
       </collision>
     </link>

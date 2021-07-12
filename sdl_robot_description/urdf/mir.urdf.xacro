@@ -3,7 +3,7 @@
        name="mir_100" >
 
   <!-- MiR100 base -->
-  <xacro:include filename="$(find mir_description)/urdf/include/mir_100_v1.urdf.xacro" />
+  <xacro:include filename="$(find sdl_robot_description)/urdf/mir_100_v1.urdf.xacro" />
   <xacro:include filename="$(find mir_description)/urdf/include/common.gazebo.xacro" />
 
   <xacro:arg name="tf_prefix" default="" />
@@ -16,13 +16,22 @@
   </xacro:unless>
 
   <xacro:mir_100 prefix="mir"/>
-  <xacro:controller_plugin_gazebo robot_namespace=""/>
+  <!-- <xacro:controller_plugin_gazebo robot_namespace=""/> -->
 
-  <!-- instead of the controller_plugin_gazebo, you can use the diffdrive controller like this:
-    <xacro:diff_controller_plugin_gazebo prefix=""
+    <!-- <xacro:diff_controller_plugin_gazebo prefix=""
       left_wheel_joint="left_wheel_joint"
       right_wheel_joint="right_wheel_joint"
       wheel_separation="${2*mir_100_act_wheel_dy}"
-      wheel_radius="${mir_100_act_wheel_radius}"/>
-  -->
+      wheel_radius="${mir_100_act_wheel_radius}"/> -->
+
+  <!-- <gazebo>
+    <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
+      <updateRate>30</updateRate>
+      <leftJoint>mirleft_wheel_joint</leftJoint>
+      <rightJoint>mirright_wheel_joint</rightJoint>
+      <wheelSeparation>${2*mir_100_act_wheel_dy}</wheelSeparation>
+      <wheelDiameter>${mir_100_act_wheel_radius*2}</wheelDiameter>
+    </plugin>
+  </gazebo> -->
+
 </robot>
