@@ -11,7 +11,7 @@
   <joint name="camera_to_hardware" type="fixed">
     <parent link="connecting_hardware"/>
     <child link="camera"/>
-    <origin xyz="0 0 .5"/>
+    <origin xyz=".3 0 .5" rpy="0 0 0"/>
   </joint>
 
   <link name="camera">
@@ -23,7 +23,6 @@
     </collision>
     <visual>
       <geometry>
-        <!-- <box size="0.073000 0.276000 0.072000"/> -->
         <mesh filename="package://sdl_robot_description/urdf/meshes/kinect.dae"/>
       </geometry>
     </visual>
