@@ -41,7 +41,8 @@
       <visual>
         <origin xyz="0.1 0 -0.1" rpy="1.57 0 1.57"/>
         <geometry>
-          <mesh filename="package://sdl_robot_description/meshes/working_copy_mm.stl" scale="0.001 0.001 0.001"/>
+          <!-- <mesh filename="package://sdl_robot_description/meshes/working_copy_mm.stl" scale="0.001 0.001 0.001"/> -->
+          <mesh filename="file:///home/larry/catkin_ws/src/sdl-packages/sdl_robot_description/meshes/working_copy_mm.stl" scale="0.001 0.001 0.001"/>
         </geometry>
         <material name="LightGrey">
           <color rgba="0.7 0.7 0.7 1.0"/>
