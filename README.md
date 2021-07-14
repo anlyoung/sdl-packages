@@ -7,12 +7,17 @@ Assuming ROS Melodic is installed.
 
 Add ROS descriptions for the robots we are using
 
-* Install the Universal Robot package
-  * For ROS Melodic, you will need to build from source:
+* Install the Universal Robots ROS Driver package
   ```
-  cd ~/catkin_ws/src
-  git clone -b melodic-devel https://github.com/ros-industrial/universal_robot.git
+  source /opt/ros/melodic/setup.bash
+  mkdir -p catkin_ws/src && cd catkin_ws
+  git clone https://github.com/UniversalRobots/Universal_Robots_ROS_Driver.git src/Universal_Robots_ROS_Driver
+  git clone -b calibration_devel https://github.com/fmauch/universal_robot.git src/fmauch_universal_robot
+  sudo apt update -qq
+  rosdep update
+  rosdep install --from-paths src --ignore-src -y
   catkin_make
+  source devel/setup.bash
   ```
 * `sudo apt install ros-noetic-mir-robot`
 
@@ -69,6 +74,9 @@ MiR/UR Vention Mounting Module for UR5e, MiR200
 
 ## Useful Links
 [Creating Moveit config file](http://docs.ros.org/en/melodic/api/moveit_tutorials/html/doc/setup_assistant/setup_assistant_tutorial.html)
+
 [Depth Camera integration](http://gazebosim.org/tutorials?tut=ros_depth_camera&cat=connect_ros)
+
 [ROS plugin list](http://gazebosim.org/tutorials?tut=ros_gzplugins&cat=connect_ros)
+
 [PointCloud2 message](http://docs.ros.org/en/melodic/api/sensor_msgs/html/msg/PointCloud2.html)
