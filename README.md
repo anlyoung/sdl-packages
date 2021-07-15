@@ -7,17 +7,14 @@ Assuming ROS Melodic is installed.
 
 Add ROS descriptions for the robots we are using
 
-* Install the Universal Robots ROS Driver package
+* Install git LFS
+
+* Install the Universal Robots package
+  * For ROS Melodic, you will need to build from source:
   ```
-  source /opt/ros/melodic/setup.bash
-  mkdir -p catkin_ws/src && cd catkin_ws
-  git clone https://github.com/UniversalRobots/Universal_Robots_ROS_Driver.git src/Universal_Robots_ROS_Driver
-  git clone -b calibration_devel https://github.com/fmauch/universal_robot.git src/fmauch_universal_robot
-  sudo apt update -qq
-  rosdep update
-  rosdep install --from-paths src --ignore-src -y
+  cd ~/catkin_ws/src
+  git clone -b melodic-devel https://github.com/ros-industrial/universal_robot.git
   catkin_make
-  source devel/setup.bash
   ```
 * `sudo apt install ros-noetic-mir-robot`
 
@@ -54,6 +51,10 @@ To launch the gazebo simulaion, run
 Once the gazebo simulation is running, execute
 
 `python sdl_gazebo/python-nodes/demo.py`
+
+To see the Kinect camera sensor information, run
+
+`rosrun rviz rviz -d 'rospack sdl_robot_description'/cfg/point_cloud_config.rviz`
 
 Moveit is not currently working (7 July 2021)
 
