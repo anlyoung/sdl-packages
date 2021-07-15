@@ -1,8 +1,6 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
 
-
-
   <link name="connecting_hardware" >
     <visual>
       <origin xyz="0.1 0 -0.1" rpy="1.57 0 1.57"/>
@@ -27,14 +25,14 @@
   </link>
 
   <joint name="mir_to_hardware" type="fixed">
-    <parent link="mirbase_footprint"/>
+    <parent link="mir/base_footprint"/>
     <child link="connecting_hardware"/>
     <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
   </joint>
 
   <joint name="hardware_to_ur" type="fixed">
     <parent link="connecting_hardware"/>
-    <child link="base_link"/>
+    <child link="ur5e_base_link"/>
     <origin xyz="0.325 0.0 0.85" rpy="0.0 0.0 0.0"/>
   </joint>
 
