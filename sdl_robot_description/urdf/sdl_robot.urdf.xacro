@@ -8,8 +8,15 @@
   <!-- mir-->
   <xacro:include filename="$(find sdl_robot_description)/urdf/mir.urdf.xacro"/>
 
-  <!-- ur5e and gripper -->
-  <xacro:include filename="$(find sdl_robot_description)/urdf/ur5e_and_2f140.urdf" />
+  <!-- connecting hardware -->
+  <xacro:include filename="$(find sdl_robot_description)/urdf/connecting_hardware.urdf.xacro" />
+
+  <!-- ur5e arm -->
+  <xacro:include filename="$(find ur_e_description)/urdf/ur5e.urdf.xacro" />
+  <xacro:ur5e_robot prefix="" joint_limited="False" />
+s
+  <!-- gripper -->
+  <xacro:include filename="$(find sdl_robot_description)/urdf/2f140.urdf" />
 
   <!-- camera -->
   <xacro:include filename="$(find sdl_robot_description)/urdf/camera.urdf.xacro" />
