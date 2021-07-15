@@ -9,14 +9,7 @@ Add ROS descriptions for the robots we are using
 
 * Install git LFS
 
-* Install the Universal Robots package
-  * For ROS Melodic, you will need to build from source:
-  ```
-  cd ~/catkin_ws/src
-  git clone -b melodic-devel https://github.com/ros-industrial/universal_robot.git
-  catkin_make
-  ```
-* `sudo apt install ros-noetic-mir-robot`
+* `sudo apt install ros-melodic-mir-robot`
 
 Create a workspace for the project:
 
@@ -26,11 +19,15 @@ Go into the workspace and clone the repository:
 
 `cd catkin_ws/src`
 
-`git clone https://github.com/dsquez/sdl-packages.git`
+`git clone --recurse-submodules https://github.com/dsquez/sdl-packages.git`
 
-Go back to src and build:
+Go back to src, install dependencies, and build:
 
-`cd catkin_ws`
+`cd ..`
+
+`sudo apt update -qq`
+`rosdep update`
+`rosdep install --from-paths src --ignore-src -y`
 
 `catkin_make`
 
