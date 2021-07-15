@@ -1,8 +1,8 @@
   type: "diff_drive_controller/DiffDriveController"
   publish_rate: 50
 
-  left_wheel: mirleft_wheel_joint
-  right_wheel: mirright_wheel_joint
+  left_wheel: mir/left_wheel_joint
+  right_wheel: mir/right_wheel_joint
 
   # Odometry covariances for the encoder output of the robot. These values should
   # be tuned to your robot's sample odometry data, but these values are a good place

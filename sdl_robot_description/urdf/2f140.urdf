@@ -389,14 +389,14 @@
   </joint>
   <!-- adapted below from https://github.com/intuitivecomputing/ur5_with_robotiq_gripper/blob/master/icl_ur5_setup_description/robots/ur5_robotiq_140.xacro-->
   <joint name="ur5_ee_link-gripper_base" type="fixed">
-      <parent link="tool0"/>
+      <parent link="ur5e_tool0"/>
       <child link="robotiq_arg2f_coupling"/>
       <origin rpy="0.0 0.0 1.57079632679" xyz=" 0.0 0.0 0.0"/>
   </joint>
   <!-- not sure what this does, parent link-->
   <link name="ee_tip"/>
   <joint name="ee_tip_joint" type="fixed">
-      <parent link="tool0"/>
+      <parent link="ur5e_tool0"/>
       <child link="ee_tip"/>
       <!--  just an estimation, not an accurate value-->
       <origin rpy="0.0 0.0 0.0" xyz=" 0.00 0.0 0.23"/>

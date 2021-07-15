@@ -10,7 +10,7 @@ Add ROS descriptions for the robots we are using
 * Install git LFS
 
 * Install the Universal Robots package
- * For ROS Melodic, you will need to build from source:
+  * For ROS Melodic, you will need to build from source:
   ```
   cd ~/catkin_ws/src
   git clone -b melodic-devel https://github.com/ros-industrial/universal_robot.git
@@ -54,7 +54,7 @@ Once the gazebo simulation is running, execute
 
 To see the Kinect camera sensor information, run
 
-`rosrun rviz rviz -d 'rospack sdl_gazebo'/rviz_config/point_cloud_config.rviz`
+`rosrun rviz rviz -d 'rospack sdl_robot_description'/cfg/point_cloud_config.rviz`
 
 Moveit is not currently working (7 July 2021)
 
