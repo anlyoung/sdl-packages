@@ -5,11 +5,9 @@ This repository holds code for the SDL simulation project at Argonne National La
 ## Setup
 Assuming ROS Melodic is installed.
 
-Add ROS descriptions for the robots we are using
+Make sure git LFS is installed. Documentation for git lfs can be found [here](https://git-lfs.github.com/)
 
-* Install git LFS
-
-* `sudo apt install ros-melodic-mir-robot`
+`git lfs install`
 
 Create a workspace for the project:
 
@@ -19,7 +17,15 @@ Go into the workspace and clone the repository:
 
 `cd catkin_ws/src`
 
-`git clone --recurse-submodules https://github.com/dsquez/sdl-packages.git`
+`git clone https://github.com/dsquez/sdl-packages.git`
+
+Clone other repositories that we're using
+
+`git clone https://github.com/UniversalRobots/Universal_Robots_ROS_Driver.git`
+
+`git clone -b calibration_devel https://github.com/fmauch/universal_robot.git`
+
+`git clone -b melodic https://github.com/dfki-ric/mir_robot.git`
 
 Go back to src, install dependencies, and build:
 
