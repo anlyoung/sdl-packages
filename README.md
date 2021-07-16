@@ -32,7 +32,9 @@ Go back to src, install dependencies, and build:
 `cd ..`
 
 `sudo apt update -qq`
+
 `rosdep update`
+
 `rosdep install --from-paths src --ignore-src -y`
 
 `catkin_make`
