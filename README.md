@@ -41,6 +41,13 @@ Source the new workspace:
 
 `source catkin_ws/devel/setup.bash`
 
+## IMPORTANT GAZEBO INFORMATION
+As of 16 July 2021, I have been having issues getting the gazebo world to show up properly. It has only worked with absolute filepaths and changing environment variables. To run gazebo, change the absolute filepaths found in `sdl_gazebo/world/lab_simple.world` to reflect your machine, and in the terminal from which you will launch gazebo, run:
+
+`export GAZEBO_RESOURCE_PATH="<path-to-your-workspace>/src/sdl-packages/sdl_gazebo/world/"`
+
+This will hopefully be fixed in the near future.
+
 ## Running
 To see the rviz visualization, make sure ros and the workspace are sourced and run
 
