@@ -27,7 +27,7 @@ Clone other repositories that we're using
 
 `git clone -b melodic https://github.com/dfki-ric/mir_robot.git`
 
-Go back to src, install dependencies, and build:
+Go back to workspace base, install dependencies, and build:
 
 `cd ..`
 
