@@ -3,10 +3,10 @@
        name="sdl_robot" >
 
   <!-- common stuff -->
-  <xacro:include filename="$(find sdl_robot_description)/urdf/common.gazebo.xacro" />
+  <!-- <xacro:include filename="$(find sdl_robot_description)/urdf/common.gazebo.xacro" /> -->
 
   <!-- mir-->
-  <xacro:include filename="$(find sdl_robot_description)/urdf/mir.urdf.xacro" />
+  <xacro:include filename="$(find mir_description)/urdf/mir.urdf.xacro" />
 
   <!-- connecting hardware -->
   <xacro:include filename="$(find sdl_robot_description)/urdf/connecting_hardware.urdf.xacro" />
@@ -14,12 +14,12 @@
   <!-- ur5e arm -->
   <xacro:include filename="$(find ur_description)/urdf/inc/ur5e_macro.xacro" />
   <xacro:ur5e_robot prefix="ur5e_" />
-s
+
   <!-- gripper -->
   <xacro:include filename="$(find sdl_robot_description)/urdf/2f140.urdf" />
 
   <!-- camera -->
-  <xacro:include filename="$(find sdl_robot_description)/urdf/camera.urdf.xacro" />
+  <!-- <xacro:include filename="$(find sdl_robot_description)/urdf/camera.urdf.xacro" /> -->
 
 
 </robot>
