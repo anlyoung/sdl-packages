@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: sdl_robot_description
+    relative_path: urdf/sdl_arm.urdf.xacro
+    xacro_args: ""
+  SRDF:
+    relative_path: config/sdl_robot.srdf
+  CONFIG:
+    author_name: Derek Vasquez
+    author_email: dvasquez@anl.gov
+    generated_timestamp: 1626703548

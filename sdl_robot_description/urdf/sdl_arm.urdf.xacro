@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro"
+       name="sdl_robot" >
+
+  <!-- common stuff -->
+  <xacro:include filename="$(find sdl_robot_description)/urdf/common.gazebo.xacro" />
+
+  <!-- ur5e arm -->
+  <xacro:include filename="$(find ur_description)/urdf/inc/ur5e_macro.xacro" />
+  <xacro:ur5e_robot prefix="ur5e_" />
+
+  <!-- gripper -->
+  <xacro:include filename="$(find sdl_robot_description)/urdf/2f140.urdf" />
+
+
+</robot>
