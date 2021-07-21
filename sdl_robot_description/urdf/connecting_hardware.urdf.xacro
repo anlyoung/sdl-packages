@@ -25,7 +25,7 @@
   </link>
 
   <joint name="mir_to_hardware" type="fixed">
-    <parent link="mir/base_footprint"/>
+    <parent link="base_footprint"/>
     <child link="connecting_hardware"/>
     <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
   </joint>
