@@ -68,13 +68,19 @@ To see the Kinect camera sensor information, run
 
 `rosrun rviz rviz -d 'rospack sdl_robot_description'/cfg/point_cloud_config.rviz`
 
-### Navigating the MIR
+### Navigating the MIR with a map
+```
+roslaunch mir_navigation amcl.launch initial_pose_x:=11.0 initial_pose_y:=4.0
+roslaunch mir_navigation start_planner.launch map_file:=$(rospack find sdl_gazebo)/maps/map.yaml
+rviz -d $(rospack find mir_navigation/rviz/navigation.rviz
+```
 
-`roslaunch mir_navigation amcl.launch initial_pose_x:=11.0 initial_pose_y:=4.0`
-
-`roslaunch mir_navigation start_planner.launch map_file:=$(rospack find sdl_gazebo)/maps/map.yaml`
-
-`rviz -d $(rospack find mir_navigation/rviz/navigation.rviz`
+### Navigating the MIR without a map
+```
+roslaunch mir_navigation hector_mapping.launch
+roslaunch mir_navigation move_base.xml with_virtual_walls:=false
+rviz -d $(rospack find mir_navigation)/rviz/navigation.rviz
+```
 
 Moveit is not currently working (7 July 2021)
 
