@@ -14,30 +14,26 @@ Create a workspace for the project:
 `mkdir -p catkin_ws/src`
 
 Go into the workspace and clone the repository:
-
-`cd catkin_ws/src`
-
-`git clone https://github.com/dsquez/sdl-packages.git`
+```
+cd catkin_ws/src
+git clone https://github.com/dsquez/sdl-packages.git
+```
 
 Clone other repositories that we're using
-
-`git clone https://github.com/UniversalRobots/Universal_Robots_ROS_Driver.git`
-
-`git clone -b calibration_devel https://github.com/fmauch/universal_robot.git`
-
-`git clone -b melodic https://github.com/dfki-ric/mir_robot.git`
+```
+git clone https://github.com/UniversalRobots/Universal_Robots_ROS_Driver.git
+git clone -b calibration_devel https://github.com/fmauch/universal_robot.git
+git clone -b melodic https://github.com/dfki-ric/mir_robot.git
+```
 
 Go back to workspace base, install dependencies, and build:
-
-`cd ..`
-
-`sudo apt update -qq`
-
-`rosdep update`
-
-`rosdep install --from-paths src --ignore-src -y`
-
-`catkin_make`
+```
+cd ..
+sudo apt update -qq
+rosdep update
+rosdep install --from-paths src --ignore-src -y
+catkin_make
+```
 
 Source the new workspace:
 
