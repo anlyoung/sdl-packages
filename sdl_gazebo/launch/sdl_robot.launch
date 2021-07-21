@@ -17,13 +17,6 @@
     <arg name="limited" value="$(arg limited)"/>
   </include>
 
-  <!-- push robot_description to factory and spawn robot in gazebo -->
-  <node name="spawn_gazebo_model" pkg="gazebo_ros" type="spawn_model" args="-urdf -param robot_description -model robot -z 0.1" respawn="false" output="screen" />
-
-  <node pkg="robot_state_publisher" type="robot_state_publisher"  name="robot_state_publisher">
-    <param name="publish_frequency" type="double" value="30.0" />
-  </node>
-
 
   <!-- <include file="$(find ur_e_gazebo)/launch/controller_utils.launch"/> -->
 
@@ -31,16 +24,6 @@
   <!-- <rosparam file="$(find ur_e_gazebo)/controller/arm_controller_ur5e.yaml" command="load"/>
   <node name="arm_controller_spawner" pkg="controller_manager" type="controller_manager" args="spawn arm_controller" respawn="false" output="screen"/> -->
 
-  <rosparam command="load"
-            file="$(find sdl_gazebo)/config/wheel_control.yaml"
-            ns="wheel_controller" />
 
-  <node name="mir_controller_spawner" pkg="controller_manager" type="spawner"
-    args="wheel_controller
-          --shutdown-timeout 3"/>
-
-  <node name="rqt_robot_steering" pkg="rqt_robot_steering" type="rqt_robot_steering">
-    <param name="default_topic" value="/wheel_controller/cmd_vel"/>
-  </node>
 
 </launch>

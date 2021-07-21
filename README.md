@@ -27,7 +27,7 @@ Clone other repositories that we're using
 
 `git clone -b melodic https://github.com/dfki-ric/mir_robot.git`
 
-Go back to src, install dependencies, and build:
+Go back to workspace base, install dependencies, and build:
 
 `cd ..`
 
@@ -68,6 +68,14 @@ To see the Kinect camera sensor information, run
 
 `rosrun rviz rviz -d 'rospack sdl_robot_description'/cfg/point_cloud_config.rviz`
 
+### Navigating the MIR
+
+`roslaunch mir_navigation amcl.launch initial_pose_x:=11.0 initial_pose_y:=4.0`
+
+`roslaunch mir_navigation start_planner.launch map_file:=$(rospack find sdl_gazebo)/maps/map.yaml`
+
+`rviz -d $(rospack find mir_navigation/rviz/navigation.rviz`
+
 Moveit is not currently working (7 July 2021)
 
 ## Components
@@ -93,3 +101,5 @@ MiR/UR Vention Mounting Module for UR5e, MiR200
 [ROS plugin list](http://gazebosim.org/tutorials?tut=ros_gzplugins&cat=connect_ros)
 
 [PointCloud2 message](http://docs.ros.org/en/melodic/api/sensor_msgs/html/msg/PointCloud2.html)
+
+[YAML format for map](https://wiki.ros.org/map_server)
