@@ -3,10 +3,10 @@
        name="sdl_robot" >
 
   <!-- common stuff -->
-  <xacro:include filename="$(find sdl_robot_description)/urdf/common.gazebo.xacro" />
+  <!-- <xacro:include filename="$(find sdl_robot_description)/urdf/common.gazebo.xacro" /> -->
 
   <!-- mir-->
-  <xacro:include filename="$(find sdl_robot_description)/urdf/mir.urdf.xacro" />
+  <xacro:include filename="$(find mir_description)/urdf/mir.urdf.xacro" />
 
   <!-- connecting hardware -->
   <xacro:include filename="$(find sdl_robot_description)/urdf/connecting_hardware.urdf.xacro" />
@@ -19,7 +19,7 @@
   <xacro:include filename="$(find sdl_robot_description)/urdf/2f140.urdf" />
 
   <!-- camera -->
-  <xacro:include filename="$(find sdl_robot_description)/urdf/camera.urdf.xacro" />
+  <!-- <xacro:include filename="$(find sdl_robot_description)/urdf/camera.urdf.xacro" /> -->
 
 
 </robot>

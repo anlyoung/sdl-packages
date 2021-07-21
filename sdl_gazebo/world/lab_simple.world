@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <sdf version="1.4">
   <world name="default">
+
     <include>
       <uri>model://ground_plane</uri>
     </include>
@@ -33,21 +34,21 @@
       <pose>3 2 3 0 0 0</pose>
     </light>
     <!-- <light type="directional" name="some_light4">
-      
+
       <diffuse>0.7 0.7 0.7 0</diffuse>
       <specular>1 1 1 0</specular>
       <direction>0 0 -1</direction>
       <pose>-3 -2 3 0 0 0</pose>
     </light>
     <light type="directional" name="some_light5">
-      
+
       <diffuse>0.7 0.7 0.7 0</diffuse>
       <specular>1 1 1 0</specular>
       <direction>0 0 -1</direction>
       <pose>0 -2 3 0 0 0</pose>
     </light>
     <light type="directional" name="some_light6">
-      
+
       <diffuse>0.7 0.7 0.7 0</diffuse>
       <specular>1 1 1 0</specular>
       <direction>0 0 -1</direction>
@@ -59,7 +60,8 @@
       <link name="body">
         <visual name="visual">
           <geometry>
-            <mesh><uri>file:///home/derek/ANL/sdl_ws/src/sdl-packages/sdl_gazebo/meshes/lab_simple.dae</uri></mesh>
+            <!-- <mesh><uri>file:///home/derek/ANL/sdl_ws/src/sdl-packages/sdl_gazebo/meshes/lab_simple.dae</uri></mesh> -->
+            <mesh><uri>/home/larry/catkin_ws/src/sdl-packages/sdl_gazebo/meshes/lab_simple.dae</uri></mesh>
           </geometry>
           <material>
             <ambient> 0.6 0.6 0.6 1.0 </ambient>
@@ -68,7 +70,8 @@
         </visual>
         <collision name="collision">
           <geometry>
-            <mesh><uri>file:///home/derek/ANL/sdl_ws/src/sdl-packages/sdl_gazebo/meshes/lab_simple.dae</uri></mesh>
+            <!-- <mesh><uri>file:///home/derek/ANL/sdl_ws/src/sdl-packages/sdl_gazebo/meshes/lab_simple.dae</uri></mesh> -->
+            <mesh><uri>/home/larry/catkin_ws/src/sdl-packages/sdl_gazebo/meshes/lab_simple.dae</uri></mesh>
           </geometry>
         </collision>
       </link>
