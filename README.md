@@ -70,7 +70,7 @@ To see the Kinect camera sensor information, run
 
 ### Navigating the MIR
 
-`roslaunch mir_navigation amcl.launch initial_pose_x:=11.0 initial_pose_y:=4.0`
+`roslaunch mir_navigation amcl.launch initial_pose_x:=8.0 initial_pose_y:=4.0`
 
 `roslaunch mir_navigation start_planner.launch map_file:=$(rospack find sdl_gazebo)/maps/map.yaml`
 
