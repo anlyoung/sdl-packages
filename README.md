@@ -55,6 +55,41 @@ To launch the gazebo simulaion, run
 
 `roslaunch sdl_gazebo sdl_robot.launch`
 
+### Simple MoveIt! planning
+24 July 2021
+Moveit functionality is on the moveit-programming branch. Check out this branch.
+
+In a terminal with the workspace sourced, run
+
+`roslaunch sdl_gazebo sdl_moveit_basic.launch`
+
+The gazebo window is launched in a paused state to give the controllers enough time to initialize, when you see the message:
+
+`[ WARN] [1627157134.932762011]: service '/get_planning_scene' not advertised yet. Continue waiting...
+[ INFO] [1627157134.933636210]: waitForService: Service [/get_planning_scene] has not been advertised, waiting... `
+
+Press play to start gazebo. You will see the arm oscillate slightly. This can be mitigated in the future with controller gain tuning.
+
+When you see the message:
+
+`You can start planning now!`
+
+`[ INFO] [1627157159.619626329, 18.202000000]: Ready to take commands for planning group ur_arm.`
+
+Open another terminal and enter the following
+
+`rostopic pub -1 /ur_arm/moveit/goal_pose geometry_msgs/Pose "position:
+  x: 1.2
+  y: 0.0
+  z: 1.5
+orientation:
+  x: 0.0
+  y: 0.707
+  z: 0.0
+  w: 0.707"`
+  
+You should see the arm move to the planned position. You will probably see an error that the controllers failed. This is another gain tuning issue, as the arm is not quite getting to the goal state indicated.
+
 ### Controlling with Python
 Once the gazebo simulation is running, execute
 
