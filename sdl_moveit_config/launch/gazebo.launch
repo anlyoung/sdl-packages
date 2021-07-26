@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <launch>
-  <arg name="paused" default="false"/>
+  <arg name="paused" default="true"/>
   <arg name="gazebo_gui" default="true"/>
   <arg name="urdf_path" default="$(find sdl_robot_description)/urdf/sdl_robot.urdf.xacro"/>
 
@@ -12,7 +12,9 @@
   </include>
 
   <!-- send robot urdf to param server -->
-  <param name="robot_description" textfile="$(arg urdf_path)" />
+  <param name="robot_description" command="xacro  '$(find sdl_robot_description)/urdf/sdl_robot.urdf.xacro'" />
+
+  <rosparam file="$(find sdl_moveit_config)/config/gazebo_controller.yaml" command="load"/>
 
   <!-- push robot_description to factory and spawn robot in gazebo at the origin, change x,y,z arguments to spawn in a different position -->
   <node name="spawn_gazebo_model" pkg="gazebo_ros" type="spawn_model" args="-urdf -param robot_description -model robot -x 0 -y 0 -z 0"

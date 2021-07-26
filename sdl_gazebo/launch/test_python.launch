@@ -1,0 +1,5 @@
+<launch>
+
+<node name="ur_python_planner" pkg="sdl_gazebo" type="sdl_moveit_node.py" output="screen" />
+
+</launch>

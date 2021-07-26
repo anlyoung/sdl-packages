@@ -1,7 +1,7 @@
 # Simulation settings for using moveit_sim_controllers
 moveit_sim_hw_interface:
-  joint_model_group: todo_group_name
-  joint_model_group_pose: todo_state_name
+  joint_model_group: ur_arm
+  joint_model_group_pose: home
 # Settings for ros_control_boilerplate control loop
 generic_hw_control_loop:
   loop_hz: 300
@@ -9,16 +9,9 @@ generic_hw_control_loop:
 # Settings for ros_control hardware interface
 hardware_interface:
   joints:
-    - mir/bl_caster_rotation_joint
-    - mir/bl_caster_wheel_joint
-    - mir/br_caster_rotation_joint
-    - mir/br_caster_wheel_joint
-    - mir/fl_caster_rotation_joint
-    - mir/fl_caster_wheel_joint
-    - mir/fr_caster_rotation_joint
-    - mir/fr_caster_wheel_joint
-    - mir/left_wheel_joint
-    - mir/right_wheel_joint
+    - virtual_joint
+    - left_wheel_joint
+    - right_wheel_joint
     - ur5e_shoulder_pan_joint
     - ur5e_shoulder_lift_joint
     - ur5e_elbow_joint
@@ -38,23 +31,113 @@ controller_list:
     default: True
     type: FollowJointTrajectory
     joints:
-      - ur_arm_shoulder_pan_joint
-      - ur_arm_shoulder_lift_joint
-      - ur_arm_elbow_joint
-      - ur_arm_wrist_1_joint
-      - ur_arm_wrist_2_joint
-      - ur_arm_wrist_3_joint
-  - name: sdl_robot_controller
+      - ur5e_shoulder_pan_joint
+      - ur5e_shoulder_lift_joint
+      - ur5e_elbow_joint
+      - ur5e_wrist_1_joint
+      - ur5e_wrist_2_joint
+      - ur5e_wrist_3_joint
+  # - name: position_traj_controller
+  #   action_ns: follow_joint_trajectory
+  #   type: FollowJointTrajectory
+  #   default: True
+  #   joints:
+  #   - ur5e_shoulder_pan_joint
+  #   - ur5e_shoulder_lift_joint
+  #   - ur5e_elbow_joint
+  #   - ur5e_wrist_1_joint
+  #   - ur5e_wrist_2_joint
+  #   - ur5e_wrist_3_joint
+  - name: effort_traj_controller
     action_ns: follow_joint_trajectory
-    default: True
     type: FollowJointTrajectory
+    default: True
     joints:
-      - virtual_joint
-      - left_wheel_joint
-      - right_wheel_joint
-      - ur_arm_shoulder_pan_joint
-      - ur_arm_shoulder_lift_joint
-      - ur_arm_elbow_joint
-      - ur_arm_wrist_1_joint
-      - ur_arm_wrist_2_joint
-      - ur_arm_wrist_3_joint
+    - ur5e_shoulder_pan_joint
+    - ur5e_shoulder_lift_joint
+    - ur5e_elbow_joint
+    - ur5e_wrist_1_joint
+    - ur5e_wrist_2_joint
+    - ur5e_wrist_3_joint
+# position_traj_controller:
+#   type: position_controllers/JointTrajectoryController
+#   joints:
+#     - ur5e_shoulder_pan_joint
+#     - ur5e_shoulder_lift_joint
+#     - ur5e_elbow_joint
+#     - ur5e_wrist_1_joint
+#     - ur5e_wrist_2_joint
+#     - ur5e_wrist_3_joint
+#   gains:
+#     ur5e_shoulder_pan_joint:
+#       p: 1000
+#       d: 10
+#       i: 1
+#       i_clamp: 1
+#     ur5e_shoulder_lift_joint:
+#       p: 1000
+#       d: 10
+#       i: 1
+#       i_clamp: 1
+#     ur5e_elbow_joint:
+#       p: 1000
+#       d: 10
+#       i: 1
+#       i_clamp: 1
+#     ur5e_wrist_1_joint:
+#       p: 1000
+#       d: 10
+#       i: 1
+#       i_clamp: 1
+#     ur5e_wrist_2_joint:
+#       p: 1000
+#       d: 10
+#       i: 1
+#       i_clamp: 1
+#     ur5e_wrist_3_joint:
+#       p: 1000
+#       d: 10
+#       i: 1
+#       i_clamp: 1
+effort_traj_controller:
+  type: effort_controllers/JointTrajectoryController
+  joints:
+    - ur5e_shoulder_pan_joint
+    - ur5e_shoulder_lift_joint
+    - ur5e_elbow_joint
+    - ur5e_wrist_1_joint
+    - ur5e_wrist_2_joint
+    - ur5e_wrist_3_joint
+  gains:
+    ur5e_shoulder_pan_joint:
+      p: 1000
+      d: 10
+      i: 1
+      i_clamp: 1
+    ur5e_shoulder_lift_joint:
+      p: 1000
+      d: 10
+      i: 1
+      i_clamp: 1
+    ur5e_elbow_joint:
+      p: 1000
+      d: 10
+      i: 1
+      i_clamp: 1
+    ur5e_wrist_1_joint:
+      p: 1000
+      d: 10
+      i: 1
+      i_clamp: 1
+    ur5e_wrist_2_joint:
+      p: 1000
+      d: 10
+      i: 1
+      i_clamp: 1
+    ur5e_wrist_3_joint:
+      p: 1000
+      d: 10
+      i: 1
+      i_clamp: 1
+
+      # https://ros-planning.github.io/moveit_tutorials/doc/gazebo_simulation/gazebo_simulation.html
