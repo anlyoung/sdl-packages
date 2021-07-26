@@ -12,7 +12,7 @@
   <xacro:include filename="$(find sdl_robot_description)/urdf/connecting_hardware.urdf.xacro" />
 
   <!-- ur5e arm -->
-  <xacro:include filename="$(find ur_description)/urdf/inc/ur5e_macro.xacro" />
+  <xacro:include filename="$(find sdl_robot_description)/urdf/inc/ur5e_macro.xacro" />
   <xacro:ur5e_robot prefix="ur5e_" />
 
   <!-- gripper -->
