@@ -14,30 +14,26 @@ Create a workspace for the project:
 `mkdir -p catkin_ws/src`
 
 Go into the workspace and clone the repository:
-
-`cd catkin_ws/src`
-
-`git clone https://github.com/dsquez/sdl-packages.git`
+```
+cd catkin_ws/src
+git clone https://github.com/dsquez/sdl-packages.git
+```
 
 Clone other repositories that we're using
-
-`git clone https://github.com/UniversalRobots/Universal_Robots_ROS_Driver.git`
-
-`git clone -b calibration_devel https://github.com/fmauch/universal_robot.git`
-
-`git clone -b melodic https://github.com/dfki-ric/mir_robot.git`
+```
+git clone https://github.com/UniversalRobots/Universal_Robots_ROS_Driver.git
+git clone -b calibration_devel https://github.com/fmauch/universal_robot.git
+git clone -b melodic https://github.com/dfki-ric/mir_robot.git
+```
 
 Go back to workspace base, install dependencies, and build:
-
-`cd ..`
-
-`sudo apt update -qq`
-
-`rosdep update`
-
-`rosdep install --from-paths src --ignore-src -y`
-
-`catkin_make`
+```
+cd ..
+sudo apt update -qq
+rosdep update
+rosdep install --from-paths src --ignore-src -y
+catkin_make
+```
 
 Source the new workspace:
 
@@ -59,6 +55,41 @@ To launch the gazebo simulaion, run
 
 `roslaunch sdl_gazebo sdl_robot.launch`
 
+### Simple MoveIt! planning
+24 July 2021
+Moveit functionality is on the moveit-programming branch. Check out this branch.
+
+In a terminal with the workspace sourced, run
+
+`roslaunch sdl_gazebo sdl_moveit_basic.launch`
+
+The gazebo window is launched in a paused state to give the controllers enough time to initialize, when you see the message:
+
+`[ WARN] [1627157134.932762011]: service '/get_planning_scene' not advertised yet. Continue waiting...
+[ INFO] [1627157134.933636210]: waitForService: Service [/get_planning_scene] has not been advertised, waiting... `
+
+Press play to start gazebo. You will see the arm oscillate slightly. This can be mitigated in the future with controller gain tuning.
+
+When you see the message:
+
+`You can start planning now!`
+
+`[ INFO] [1627157159.619626329, 18.202000000]: Ready to take commands for planning group ur_arm.`
+
+Open another terminal and enter the following
+
+`rostopic pub -1 /ur_arm/moveit/goal_pose geometry_msgs/Pose "position:
+  x: 1.2
+  y: 0.0
+  z: 1.5
+orientation:
+  x: 0.0
+  y: 0.707
+  z: 0.0
+  w: 0.707"`
+  
+You should see the arm move to the planned position. You will probably see an error that the controllers failed. This is another gain tuning issue, as the arm is not quite getting to the goal state indicated.
+
 ### Controlling with Python
 Once the gazebo simulation is running, execute
 
@@ -68,13 +99,22 @@ To see the Kinect camera sensor information, run
 
 `rosrun rviz rviz -d 'rospack sdl_robot_description'/cfg/point_cloud_config.rviz`
 
-### Navigating the MIR
+### Navigating the MIR with a map
+```
+roslaunch sdl_gazebo sdl_robot.launch
+roslaunch mir_navigation amcl.launch initial_pose_x:=8.0 initial_pose_y:=4.0
+roslaunch mir_navigation start_planner.launch map_file:=$(rospack find sdl_gazebo)/maps/map.yaml
+rviz -d $(rospack find mir_navigation/rviz/navigation.rviz
+```
 
-`roslaunch mir_navigation amcl.launch initial_pose_x:=11.0 initial_pose_y:=4.0`
-
-`roslaunch mir_navigation start_planner.launch map_file:=$(rospack find sdl_gazebo)/maps/map.yaml`
-
-`rviz -d $(rospack find mir_navigation/rviz/navigation.rviz`
+### Navigating the MIR without a map
+```
+roslaunch sdl_gazebo sdl_robot.launch
+roslaunch mir_navigation hector_mapping.launch
+roslaunch mir_navigation move_base.xml with_virtual_walls:=false
+rviz -d $(rospack find mir_navigation)/rviz/navigation.rviz
+python sdl_gazebo/python-nodes/mir_nav.py
+```
 
 Moveit is not currently working (7 July 2021)
 
