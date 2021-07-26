@@ -14,30 +14,26 @@ Create a workspace for the project:
 `mkdir -p catkin_ws/src`
 
 Go into the workspace and clone the repository:
-
-`cd catkin_ws/src`
-
-`git clone https://github.com/dsquez/sdl-packages.git`
+```
+cd catkin_ws/src
+git clone https://github.com/dsquez/sdl-packages.git
+```
 
 Clone other repositories that we're using
-
-`git clone https://github.com/UniversalRobots/Universal_Robots_ROS_Driver.git`
-
-`git clone -b calibration_devel https://github.com/fmauch/universal_robot.git`
-
-`git clone -b melodic https://github.com/dfki-ric/mir_robot.git`
+```
+git clone https://github.com/UniversalRobots/Universal_Robots_ROS_Driver.git
+git clone -b calibration_devel https://github.com/fmauch/universal_robot.git
+git clone -b melodic https://github.com/dfki-ric/mir_robot.git
+```
 
 Go back to workspace base, install dependencies, and build:
-
-`cd ..`
-
-`sudo apt update -qq`
-
-`rosdep update`
-
-`rosdep install --from-paths src --ignore-src -y`
-
-`catkin_make`
+```
+cd ..
+sudo apt update -qq
+rosdep update
+rosdep install --from-paths src --ignore-src -y
+catkin_make
+```
 
 Source the new workspace:
 
@@ -103,13 +99,22 @@ To see the Kinect camera sensor information, run
 
 `rosrun rviz rviz -d 'rospack sdl_robot_description'/cfg/point_cloud_config.rviz`
 
-### Navigating the MIR
+### Navigating the MIR with a map
+```
+roslaunch sdl_gazebo sdl_robot.launch
+roslaunch mir_navigation amcl.launch initial_pose_x:=8.0 initial_pose_y:=4.0
+roslaunch mir_navigation start_planner.launch map_file:=$(rospack find sdl_gazebo)/maps/map.yaml
+rviz -d $(rospack find mir_navigation/rviz/navigation.rviz
+```
 
-`roslaunch mir_navigation amcl.launch initial_pose_x:=11.0 initial_pose_y:=4.0`
-
-`roslaunch mir_navigation start_planner.launch map_file:=$(rospack find sdl_gazebo)/maps/map.yaml`
-
-`rviz -d $(rospack find mir_navigation/rviz/navigation.rviz`
+### Navigating the MIR without a map
+```
+roslaunch sdl_gazebo sdl_robot.launch
+roslaunch mir_navigation hector_mapping.launch
+roslaunch mir_navigation move_base.xml with_virtual_walls:=false
+rviz -d $(rospack find mir_navigation)/rviz/navigation.rviz
+python sdl_gazebo/python-nodes/mir_nav.py
+```
 
 Moveit is not currently working (7 July 2021)
 
