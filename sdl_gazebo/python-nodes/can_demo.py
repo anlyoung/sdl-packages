@@ -17,7 +17,8 @@ def main():
     pose.pose.position.x = -2.748
     pose.pose.position.y = -1.767
 
-    pose.pose.orientation.y = 1
+    pose.pose.orientation.z = 1
+    pose.pose.orientation.w = -0.00900788442947
 
     # Publishers need some time to get started
     rospy.sleep(1)
@@ -28,12 +29,16 @@ def main():
     while locked:
         pass
     
-    pose = Pose
-    arm_pub.publish()
+    pose = Pose()
+    pose.position.x = 1.24
+    pose.position.z = .787
+    pose.orientation.y = .707
+    pose.orientation.w = .707
+    arm_pub.publish(pose)
 
 def lock_control(data):
     global locked
-    if data.status_list[0].text == "Goal reached.":
+    if not data.status_list or data.status_list[0].text == "Goal reached.":
         locked = False
     else:
         locked = True

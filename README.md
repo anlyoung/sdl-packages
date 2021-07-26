@@ -52,17 +52,6 @@ Run the launch file:
 
 `roslaunch sdl_gazebo sdl_nav_moveit_combined.launch`
 
-### Demo Picking Up Can
-`python sdl_gazebo/python-nodes/can_demo.py`
-
-### Simple MoveIt! planning
-24 July 2021
-Moveit functionality is on the moveit-programming branch. Check out this branch.
-
-In a terminal with the workspace sourced, run
-
-`roslaunch sdl_gazebo sdl_moveit_basic.launch`
-
 The gazebo window is launched in a paused state to give the controllers enough time to initialize, when you see the message:
 
 `[ WARN] [1627157134.932762011]: service '/get_planning_scene' not advertised yet. Continue waiting...
@@ -75,6 +64,15 @@ When you see the message:
 `You can start planning now!`
 
 `[ INFO] [1627157159.619626329, 18.202000000]: Ready to take commands for planning group ur_arm.`
+
+You are ready to proceed.
+
+### Demo Picking Up Can
+`python sdl_gazebo/python-nodes/can_demo.py`
+
+### Simple MoveIt! planning
+24 July 2021
+Moveit functionality is on the moveit-programming branch. Check out this branch.
 
 Open another terminal and enter the following
 
@@ -99,24 +97,10 @@ To see the Kinect camera sensor information, run
 
 `rosrun rviz rviz -d 'rospack sdl_robot_description'/cfg/point_cloud_config.rviz`
 
-### Navigating the MIR with a map
+### Navigating the MIR 
 ```
-roslaunch sdl_gazebo sdl_robot.launch
-roslaunch mir_navigation amcl.launch initial_pose_x:=8.0 initial_pose_y:=4.0
-roslaunch mir_navigation start_planner.launch map_file:=$(rospack find sdl_gazebo)/maps/map.yaml
-rviz -d $(rospack find mir_navigation/rviz/navigation.rviz
-```
-
-### Navigating the MIR without a map
-```
-roslaunch sdl_gazebo sdl_robot.launch
-roslaunch mir_navigation hector_mapping.launch
-roslaunch mir_navigation move_base.xml with_virtual_walls:=false
-rviz -d $(rospack find mir_navigation)/rviz/navigation.rviz
 python sdl_gazebo/python-nodes/mir_nav.py
 ```
-
-Moveit is not currently working (7 July 2021)
 
 ## Components
 UR5e Arm
