@@ -34,10 +34,10 @@ def main():
 
 def lock_control(data):
     global locked
-    if data.status_list:
-        locked = True
-    else:
+    if data.status_list[0].text == "Goal reached.":
         locked = False
+    else:
+        locked = True
 
 
 if __name__ == "__main__":
