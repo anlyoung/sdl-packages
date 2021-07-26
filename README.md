@@ -47,13 +47,13 @@ As of 16 July 2021, I have been having issues getting the gazebo world to show u
 This will hopefully be fixed in the near future.
 
 ## Running
-To see the rviz visualization, make sure ros and the workspace are sourced and run
 
-`roslaunch sdl_robot_description view_sdl.launch`
+Run the launch file:
 
-To launch the gazebo simulaion, run
+`roslaunch sdl_gazebo sdl_nav_moveit_combined.launch`
 
-`roslaunch sdl_gazebo sdl_robot.launch`
+### Demo Picking Up Can
+`python sdl_gazebo/python-nodes/can_demo.py`
 
 ### Simple MoveIt! planning
 24 July 2021
