@@ -8,6 +8,7 @@ Panels:
         - /Status1
         - /PointCloud21
         - /Image1
+        - /Marker1
       Splitter Ratio: 0.5
     Tree Height: 355
   - Class: rviz/Selection
@@ -86,7 +87,7 @@ Visualization Manager:
       Value: true
     - Class: rviz/Image
       Enabled: true
-      Image Topic: /camera/depth/image_raw
+      Image Topic: /camera/color/image_raw
       Max Value: 1
       Median window: 5
       Min Value: 0
@@ -95,6 +96,14 @@ Visualization Manager:
       Queue Size: 2
       Transport Hint: raw
       Unreliable: false
+      Value: true
+    - Class: rviz/Marker
+      Enabled: true
+      Marker Topic: visualization_marker
+      Name: Marker
+      Namespaces:
+        {}
+      Queue Size: 100
       Value: true
   Enabled: true
   Global Options:
@@ -124,25 +133,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 10
+      Distance: 12.543999671936035
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 0
-        Y: 0
-        Z: 0
+        X: -3.750875473022461
+        Y: -0.2305068075656891
+        Z: -0.27516478300094604
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.0902034193277359
+      Pitch: 0.8302035331726074
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 1.9003992080688477
+      Yaw: 4.693583965301514
     Saved: ~
 Window Geometry:
   Displays:

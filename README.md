@@ -95,7 +95,7 @@ Once the gazebo simulation is running, execute
 
 To see the Kinect camera sensor information, run
 
-`rosrun rviz rviz -d 'rospack sdl_robot_description'/cfg/point_cloud_config.rviz`
+``rosrun rviz rviz -d `rospack find sdl_robot_description`/cfg/point_cloud_config.rviz``
 
 ### Navigating the MIR 
 ```

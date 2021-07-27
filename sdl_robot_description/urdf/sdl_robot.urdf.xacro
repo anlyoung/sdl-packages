@@ -19,7 +19,7 @@
   <xacro:include filename="$(find sdl_robot_description)/urdf/2f140.urdf" />
 
   <!-- camera -->
-  <!-- <xacro:include filename="$(find sdl_robot_description)/urdf/camera.urdf.xacro" /> -->
+  <xacro:include filename="$(find sdl_robot_description)/urdf/camera.urdf.xacro" />
 
 
 </robot>

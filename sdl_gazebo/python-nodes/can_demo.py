@@ -2,6 +2,7 @@ from geometry_msgs.msg import PoseStamped, Pose
 from actionlib_msgs.msg import GoalStatusArray
 from rospy import Subscriber, Publisher
 import rospy
+from ar_track_alvar_msgs.msg import AlvarMarkers
 
 locked = False
 
@@ -10,6 +11,7 @@ def main():
     pose_pub = Publisher("move_base_simple/goal", PoseStamped, queue_size=10)
     status_sub = Subscriber("move_base/status", GoalStatusArray, lock_control)
     arm_pub = Publisher("/ur_arm/moveit/goal_pose", Pose, queue_size=1)
+    marker_sub = Subscriber("/ar_pose_marker", AlvarMarkers, marker_position)
 
     pose = PoseStamped()
     pose.header.seq = 0
@@ -43,6 +45,8 @@ def lock_control(data):
     else:
         locked = True
 
+def marker_position(data):
+    
 
 if __name__ == "__main__":
     rospy.init_node("mir_nav")
