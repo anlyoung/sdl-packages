@@ -36,4 +36,10 @@ gazebo_ros_control:
       d: 0.1
       i_clamp: 1
 
+    finger_joint:
+      p: 5.0
+      i: 0.05
+      d: 0.1
+      i_clamp: 1
+
     
