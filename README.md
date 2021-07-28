@@ -11,7 +11,7 @@ Make sure git LFS is installed. Documentation for git lfs can be found [here](ht
 
 Install the AR library:
 
-`sudo apt-get install ros-indigo-ar-track-alvar`
+`sudo apt-get install ros-melodic-ar-track-alvar`
 
 Install MoveIt:
 
