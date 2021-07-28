@@ -9,6 +9,14 @@ Make sure git LFS is installed. Documentation for git lfs can be found [here](ht
 
 `git lfs install`
 
+Install the AR library:
+
+`sudo apt-get install ros-indigo-ar-track-alvar`
+
+Install MoveIt:
+
+`sudo apt-get install ros-melodic-moveit`
+
 Create a workspace for the project:
 
 `mkdir -p catkin_ws/src`
