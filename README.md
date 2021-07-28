@@ -65,7 +65,7 @@ The gazebo window is launched in a paused state to give the controllers enough t
 `[ WARN] [1627157134.932762011]: service '/get_planning_scene' not advertised yet. Continue waiting...
 [ INFO] [1627157134.933636210]: waitForService: Service [/get_planning_scene] has not been advertised, waiting... `
 
-Press play to start gazebo. You will see the arm oscillate slightly. This can be mitigated in the future with controller gain tuning.
+**Press the play button in Gazebo.** You will see the arm oscillate slightly. This can be mitigated in the future with controller gain tuning.
 
 When you see the message:
 
@@ -79,8 +79,6 @@ You are ready to proceed.
 `python sdl_gazebo/python-nodes/can_demo.py`
 
 ### Simple MoveIt! planning
-24 July 2021
-Moveit functionality is on the moveit-programming branch. Check out this branch.
 
 Open another terminal and enter the following
 
@@ -95,15 +93,6 @@ orientation:
   w: 0.707"`
   
 You should see the arm move to the planned position. You will probably see an error that the controllers failed. This is another gain tuning issue, as the arm is not quite getting to the goal state indicated.
-
-### Controlling with Python
-Once the gazebo simulation is running, execute
-
-`python sdl_gazebo/python-nodes/demo.py`
-
-To see the Kinect camera sensor information, run
-
-``rosrun rviz rviz -d `rospack find sdl_robot_description`/cfg/point_cloud_config.rviz``
 
 ### Navigating the MIR 
 ```

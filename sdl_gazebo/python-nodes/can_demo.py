@@ -46,7 +46,7 @@ def lock_control(data):
         locked = True
 
 def marker_position(data):
-    
+    pass
 
 if __name__ == "__main__":
     rospy.init_node("mir_nav")

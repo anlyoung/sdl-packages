@@ -2016,9 +2016,10 @@
         </collision>
         <visual name='visual'>
           <geometry>
-            <mesh>
-              <uri>package://sdl_gazebo/meshes/Marker0.dae</uri>
-            </mesh>
+            <cylinder>
+              <radius>0.055</radius>
+              <length>0.23</length>
+            </cylinder>
           </geometry>
           <material>
             <script>
