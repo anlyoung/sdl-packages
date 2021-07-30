@@ -124,3 +124,5 @@ MiR/UR Vention Mounting Module for UR5e, MiR200
 [PointCloud2 message](http://docs.ros.org/en/melodic/api/sensor_msgs/html/msg/PointCloud2.html)
 
 [YAML format for map](https://wiki.ros.org/map_server)
+
+[Saving Gazebo world bug](https://stackoverflow.com/a/67088987)
