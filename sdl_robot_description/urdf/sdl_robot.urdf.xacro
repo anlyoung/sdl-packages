@@ -16,7 +16,12 @@
   <xacro:ur5e_robot prefix="ur5e_" />
 
   <!-- gripper -->
-  <xacro:include filename="$(find sdl_robot_description)/urdf/2f140.urdf" />
+  <xacro:include filename="$(find sdl_robot_description)/urdf/robotiq_2f_140_gripper_visualization/urdf/robotiq_arg2f_140_model_macro.xacro" />
+  <xacro:robotiq_arg2f_140 prefix=""/>
+  <joint name="gripper_to_arm" type="fixed" >
+    <parent link="ur5e_tool0" />
+    <child link="robotiq_arg2f_base_link" />
+  </joint>
 
   <!-- camera -->
   <xacro:include filename="$(find sdl_robot_description)/urdf/camera.urdf.xacro" />

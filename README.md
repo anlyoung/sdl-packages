@@ -126,3 +126,7 @@ MiR/UR Vention Mounting Module for UR5e, MiR200
 [YAML format for map](https://wiki.ros.org/map_server)
 
 [Saving Gazebo world bug](https://stackoverflow.com/a/67088987)
+
+[2F140 gripper](https://github.com/ros-industrial/robotiq)
+
+[Creating AR Tags](https://github.com/mikaelarguedas/gazebo_models)

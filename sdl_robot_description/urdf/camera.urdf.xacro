@@ -23,7 +23,7 @@
     </collision>
     <visual>
       <geometry>
-        <mesh filename="package://sdl_robot_description/urdf/meshes/kinect.dae"/>
+        <mesh filename="package://sdl_robot_description/meshes/kinect.dae"/>
       </geometry>
     </visual>
   </link>
