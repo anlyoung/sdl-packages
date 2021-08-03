@@ -32,10 +32,8 @@ def main():
 def lock_control(data):
     global locked
     if not data.status_list or data.status_list[0].text == "Goal reached.":
-        arm_to_can()
-        rospy.sleep(8)
         arm_down()
-        rospy.sleep(4)
+        rospy.sleep(6)
         close_gripper()
         rospy.sleep(1)
         fold_arm()
@@ -56,7 +54,7 @@ def arm_to_can():
 
 def arm_down():
     pose = Pose()
-    pose.position.x = 1.05
+    pose.position.x = 1.03
     pose.position.z = 1
     pose.position.y = -.04
     pose.orientation.y = .707
