@@ -50,8 +50,8 @@ controller_list:
   #   - ur5e_wrist_3_joint
   - name: effort_traj_controller
     action_ns: follow_joint_trajectory
-    type: FollowJointTrajectory
     default: True
+    type: FollowJointTrajectory
     joints:
     - ur5e_shoulder_pan_joint
     - ur5e_shoulder_lift_joint
@@ -139,5 +139,6 @@ effort_traj_controller:
       d: 10
       i: 1
       i_clamp: 1
-
-      # https://ros-planning.github.io/moveit_tutorials/doc/gazebo_simulation/gazebo_simulation.html
+gripper_position_controller:
+  type: position_controllers/JointPositionController
+  joint: finger_joint

@@ -1,0 +1,3 @@
+gripper_position_controller:
+  type: position_controllers/JointPositionController
+  joint: finger_joint
