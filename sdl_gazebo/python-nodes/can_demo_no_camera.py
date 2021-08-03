@@ -17,7 +17,6 @@ def main():
 
     pose_pub = Publisher("move_base_simple/goal", PoseStamped, queue_size=10)
     arm_pub = Publisher("/ur_arm/moveit/goal_pose", Pose, queue_size=1)
-    arm_status_sub = Subscriber("/move_group/status", GoalStatusArray, arm_status)
     left_gripper_pub = Publisher("/left_gripper_position_controller/command", Float64, queue_size=1)
     right_gripper_pub = Publisher("/right_gripper_position_controller/command", Float64, queue_size=1)
 
@@ -27,53 +26,64 @@ def main():
     open_gripper()
     go_to_can()
     rospy.sleep(1)
-    marker_sub = Subscriber("/ar_pose_marker", AlvarMarkers, marker_position)
     status_sub = Subscriber("move_base/status", GoalStatusArray, lock_control)
     rospy.spin()
 
 def lock_control(data):
     global locked
     if not data.status_list or data.status_list[0].text == "Goal reached.":
-        locked = False
+        arm_to_can()
+        rospy.sleep(8)
+        arm_down()
+        rospy.sleep(4)
+        close_gripper()
+        rospy.sleep(1)
+        fold_arm()
+        drive_away()
+        drive_away()
     else:
         locked = True
 
-#origin of Kinect sensor at x = .6, y = 0, z = 1.4 in arm coordinates
-def kinect_to_arm(position):
-    out = Point()
-    out.x = .5
-    out.z = 1.2
-    out.z += position.y
-    out.y += position.x
-    out.x += position.z
-    return out
-
-done = False
-
-def marker_position(data):
-    global locked
-    global done
-    if not locked and data.markers and not done:
-        arm_to_can()
-        rospy.sleep(5)
-        close_gripper()
-        done = True
-
 def arm_to_can():
     pose = Pose()
-    pose.position = kinect_to_arm(data.markers[0].pose.pose.position)
+    pose.position.x = .9
+    pose.position.z = 1
+    pose.position.y = -.04
     pose.orientation.y = .707
     pose.orientation.w = .707
     global arm_pub
     arm_pub.publish(pose)
+
+def arm_down():
+    pose = Pose()
+    pose.position.x = 1.05
+    pose.position.z = 1
+    pose.position.y = -.04
+    pose.orientation.y = .707
+    pose.orientation.w = .707
+    global arm_pub
+    arm_pub.publish(pose)
+
 
 def go_to_can():
     global pose_pub
     pose = PoseStamped()
     pose.header.seq = 0
     pose.header.frame_id = "map"
-    pose.pose.position.x = -2.9
-    pose.pose.position.y = -2
+    pose.pose.position.x = -2.6
+    pose.pose.position.y = .87
+
+    pose.pose.orientation.z = 1
+    pose.pose.orientation.w = -0.00900788442947
+    pose_pub.publish(pose)
+
+def drive_away():
+    global pose_pub
+    pose = PoseStamped()
+    pose.header.seq = 0
+    pose.header.frame_id = "map"
+    pose.pose.position.x = 0
+    pose.pose.position.y = .87
 
     pose.pose.orientation.z = 1
     pose.pose.orientation.w = -0.00900788442947
@@ -82,9 +92,11 @@ def go_to_can():
 def fold_arm():
     global arm_pub
     pose = Pose()
-    pose.position.x = .5
-    pose.position.y = 0.14
-    pose.position.z = 1.4
+    pose.position.x = .7
+    pose.position.y = 0
+    pose.position.z = 1.3
+    pose.orientation.y = .707
+    pose.orientation.w = .707
     arm_pub.publish(pose)
     rospy.sleep(5)
 
@@ -99,7 +111,6 @@ def close_gripper():
     global right_gripper_pub
     left_gripper_pub.publish(1.5)
     right_gripper_pub.publish(-.3)
-
 
 if __name__ == "__main__":
     rospy.init_node("mir_nav")

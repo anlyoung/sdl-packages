@@ -32,6 +32,7 @@ Clone other repositories that we're using
 git clone https://github.com/UniversalRobots/Universal_Robots_ROS_Driver.git
 git clone -b calibration_devel https://github.com/fmauch/universal_robot.git
 git clone -b melodic https://github.com/dfki-ric/mir_robot.git
+git clone https://github.com/ros-industrial/robotiq.git
 ```
 
 Go back to workspace base, install dependencies, and build:

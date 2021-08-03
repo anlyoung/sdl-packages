@@ -139,6 +139,4 @@ effort_traj_controller:
       d: 10
       i: 1
       i_clamp: 1
-gripper_position_controller:
-  type: position_controllers/JointPositionController
-  joint: finger_joint
+
