@@ -2,14 +2,12 @@
     <arg name="gui" default="true" />
     <arg name="tf_prefix" default="" doc="tf_prefix to be used by gazebo plugins and in the robot's urdf etc." />
 
-    <include file="$(find sdl_gazebo)/launch/empty_world.launch">
+    <include file="$(find sdl_gazebo)/launch/lab_world.launch">
         <arg name="gui" value="$(arg gui)" />
         <arg name="tf_prefix" value="$(arg tf_prefix)" />
     </include>
 
     <!-- Load gripper controller file -->
-    <rosparam file="$(find sdl_gazebo)/config/gripper_control.yaml" command="load" />
-
     <include file="$(find sdl_moveit_config)/launch/ros_controllers.launch"/>
 
     <!-- By default, we are not in debug mode -->
@@ -32,7 +30,7 @@
 
     <node name="ur_python_planner" pkg="sdl_gazebo" type="sdl_moveit_node.py" output="screen" />
         
-    <!-- Navigation -->
+    <!-- MIR navigation -->
     <include file="$(find mir_navigation)/launch/hector_mapping.launch"/>
     <include file="$(find mir_navigation)/launch/move_base.xml">
         <arg name="with_virtual_walls" value="false"/>

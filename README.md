@@ -48,13 +48,6 @@ Source the new workspace:
 
 `source catkin_ws/devel/setup.bash`
 
-## IMPORTANT GAZEBO INFORMATION
-As of 16 July 2021, I have been having issues getting the gazebo world to show up properly. It has only worked with absolute filepaths and changing environment variables. To run gazebo, change the absolute filepaths found in `sdl_gazebo/world/lab_simple.world` to reflect your machine, and in the terminal from which you will launch gazebo, run:
-
-`export GAZEBO_RESOURCE_PATH="<path-to-your-workspace>/src/sdl-packages/sdl_gazebo/world/"`
-
-This will hopefully be fixed in the near future.
-
 ## Running
 
 Run the launch file:
@@ -77,11 +70,13 @@ When you see the message:
 You are ready to proceed.
 
 ### Demo Picking Up Can
-`python sdl_gazebo/python-nodes/can_demo.py`
+`python sdl_gazebo/python-nodes/can_demo_no_camera.py`
 
-### Simple MoveIt! planning
+## Details
 
-Open another terminal and enter the following
+### UR5E Arm Control
+
+The following is an example of publishing to the topic to control the arm:
 
 `rostopic pub -1 /ur_arm/moveit/goal_pose geometry_msgs/Pose "position:
   x: 1.2
@@ -93,12 +88,35 @@ orientation:
   z: 0.0
   w: 0.707"`
   
-You should see the arm move to the planned position. You will probably see an error that the controllers failed. This is another gain tuning issue, as the arm is not quite getting to the goal state indicated.
+The launch file `sdl_gazebo/launch/sdl_nav_moveit_combined.launch` makes a call to `sdl_gazebo/src/sdl_moveit_node.py`, which starts up a ROS node that subscribes to `/ur_arm/moveit/goal_pose`. When this topic is published to, the Python code uses MoveIt to control the arm. 
 
-### Navigating the MIR 
-```
-python sdl_gazebo/python-nodes/mir_nav.py
-```
+The MoveIt configuration is `sdl_moveit_config`, and it is started up in `sdl_gazebo/launch/sdl_nav_moveit_combined.launch`.
+
+The URDF is obtained [here](https://github.com/fmauch/universal_robot/tree/calibration_devel)
+
+### MIR Navigation
+
+The MIR can be navigated by publishing to `/move_base_simple/goal`, where the starting position of the robot is (0, 0).
+
+The MIR base uses this [library](https://github.com/dfki-ric/mir_robot) to map and navigate. The launch files used in this [tutorial](https://github.com/dfki-ric/mir_robot) are launched in `sdl_gazebo/launch/sdl_nav_moveit_combined.launch`. 
+
+To see the map in RVIZ, which is launched by default, view the bottom left corner of the grid. See the MIR library for more information.
+
+### 2F140 Gripper Control
+
+The 2F140 Gripper (found [here](https://github.com/ros-industrial/robotiq)) is controlled by publishing to `/left_gripper_position_controller/command` and `/right_gripper_position_controller/command`. 
+
+### Microsoft Kinect Camera
+
+The Microsoft Kinect uses the `libgazebo_ros_openni_kinect.so` plugin to simulate sensor data. Point cloud data is published to `/camera/depth/points`. See `sdl_robot_description/urdf/camera.urdf.xacro` for more information.
+
+### Ar Tag Recognition
+
+This [library](http://wiki.ros.org/ar_track_alvar) is used to track AR tags. AR tag location is published to `/ar_pose_marker`. The AR tracking node is started in `sdl_gazebo/launch/ar_camera.launch`, which is included in `sdl_gazebo/launch/sdl_nav_moveit_combined.launch`.
+
+### General Information
+
+Controllers are started up in `sdl_moveit_config/launch/ros_controllers.launch`. The MIR controllers are loaded in `sdl_gazebo/launch/mir_gazebo_common.launch`. The main URDF file is `sdl_robot_description/urdf/sdl_robot.urdf.xacro`, which is spawned into Gazebo in `sdl_gazebo/launch/mir_gazebo_common.launch`. The world file, `sdl_gazebo/world/lab_ar.world`, is loaded in `sdl_gazebo/launch/lab_world.launch`.
 
 ## Components
 UR5e Arm
