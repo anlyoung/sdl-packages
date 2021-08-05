@@ -38,11 +38,11 @@ def lock_control(data):
     else:
         locked = True
 
-#origin of Kinect sensor at x = .6, y = 0, z = 1.4 in arm coordinates
+#origin of Kinect sensor at x = .5, y = 0, z = .9 in arm coordinates
 def kinect_to_arm(position):
     out = Point()
     out.x = .5
-    out.z = 1.2
+    out.z = .9
     out.z += position.y
     out.y += position.x
     out.x += position.z
@@ -54,12 +54,12 @@ def marker_position(data):
     global locked
     global done
     if not locked and data.markers and not done:
-        arm_to_can()
+        arm_to_can(data)
         rospy.sleep(5)
         close_gripper()
         done = True
 
-def arm_to_can():
+def arm_to_can(data):
     pose = Pose()
     pose.position = kinect_to_arm(data.markers[0].pose.pose.position)
     pose.orientation.y = .707
@@ -82,9 +82,11 @@ def go_to_can():
 def fold_arm():
     global arm_pub
     pose = Pose()
-    pose.position.x = .5
-    pose.position.y = 0.14
-    pose.position.z = 1.4
+    pose.position.x = .7
+    pose.position.y = 0
+    pose.position.z = 1.3
+    pose.orientation.y = .707
+    pose.orientation.w = .707
     arm_pub.publish(pose)
     rospy.sleep(5)
 
@@ -100,6 +102,8 @@ def close_gripper():
     left_gripper_pub.publish(1.5)
     right_gripper_pub.publish(-.3)
 
+def arm_status(data):
+    pass
 
 if __name__ == "__main__":
     rospy.init_node("mir_nav")
