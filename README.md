@@ -88,9 +88,9 @@ orientation:
   z: 0.0
   w: 0.707"`
   
-The launch file `sdl_gazebo/launch/sdl_nav_moveit_combined.launch` makes a call to `sdl_gazebo/src/sdl_moveit_node.py`, which starts up a ROS node that subscribes to `/ur_arm/moveit/goal_pose`. When this topic is published to, the Python code uses MoveIt to control the arm. 
+The main launch file, `sdl_gazebo/launch/sdl_nav_moveit_combined.launch`, makes a call to `sdl_gazebo/src/sdl_moveit_node.py`, which starts up a ROS node that subscribes to `/ur_arm/moveit/goal_pose`. When this topic is published to, the Python code uses MoveIt to control the arm. 
 
-The MoveIt configuration is `sdl_moveit_config`, and it is started up in `sdl_gazebo/launch/sdl_nav_moveit_combined.launch`.
+The MoveIt configuration for the arm is `sdl_moveit_config`. It was created with the help of the MoveIt setup assistant.
 
 The URDF is obtained [here](https://github.com/fmauch/universal_robot/tree/calibration_devel)
 
@@ -98,7 +98,7 @@ The URDF is obtained [here](https://github.com/fmauch/universal_robot/tree/calib
 
 The MIR can be navigated by publishing to `/move_base_simple/goal`, where the starting position of the robot is (0, 0).
 
-The MIR base uses this [library](https://github.com/dfki-ric/mir_robot) to map and navigate. The launch files used in this [tutorial](https://github.com/dfki-ric/mir_robot) are launched in `sdl_gazebo/launch/sdl_nav_moveit_combined.launch`. 
+The MIR base uses this [library](https://github.com/dfki-ric/mir_robot) to map and navigate. The launch files used in this [tutorial](https://github.com/dfki-ric/mir_robot#gazebo-demo-mapping) are included in `sdl_gazebo/launch/sdl_nav_moveit_combined.launch`. 
 
 To see the map in RVIZ, which is launched by default, view the bottom left corner of the grid. See the MIR library for more information.
 
@@ -112,26 +112,17 @@ The Microsoft Kinect uses the `libgazebo_ros_openni_kinect.so` plugin to simulat
 
 ### Ar Tag Recognition
 
-This [library](http://wiki.ros.org/ar_track_alvar) is used to track AR tags. AR tag location is published to `/ar_pose_marker`. The AR tracking node is started in `sdl_gazebo/launch/ar_camera.launch`, which is included in `sdl_gazebo/launch/sdl_nav_moveit_combined.launch`.
+This [library](http://wiki.ros.org/ar_track_alvar) is used to track AR tags. AR tag location is published to `/ar_pose_marker`. The AR tracking node is started in `sdl_gazebo/launch/ar_camera.launch`.
 
 ### General Information
 
-Controllers are started up in `sdl_moveit_config/launch/ros_controllers.launch`. The MIR controllers are loaded in `sdl_gazebo/launch/mir_gazebo_common.launch`. The main URDF file is `sdl_robot_description/urdf/sdl_robot.urdf.xacro`, which is spawned into Gazebo in `sdl_gazebo/launch/mir_gazebo_common.launch`. The world file, `sdl_gazebo/world/lab_ar.world`, is loaded in `sdl_gazebo/launch/lab_world.launch`.
+Controllers are started up in `sdl_moveit_config/launch/ros_controllers.launch`. 
 
-## Components
-UR5e Arm
+The MIR controllers are loaded in `sdl_gazebo/launch/mir_gazebo_common.launch`. 
 
-[Robotiq Adaptive Robot Gripper, 2F-140](https://robotiq.com/products/2f85-140-adaptive-robot-gripper?ref=nav_product_new_button): [URDF](https://github.com/Improbable-AI/airobot/blob/master/src/airobot/urdfs/ur5e_2f140_pybullet.urdf)
+The main URDF file is `sdl_robot_description/urdf/sdl_robot.urdf.xacro`, which is spawned into Gazebo in `sdl_gazebo/launch/mir_gazebo_common.launch`. 
 
-EPick Kit for e-Series from UR / 1 cup
-
-Dual Robotiq Adaptive Robot Gripper Adapter
-
-MiR200 (with two batteries)
-
-MiR Autonomous Charger (24V)
-
-MiR/UR Vention Mounting Module for UR5e, MiR200
+The world file, `sdl_gazebo/world/lab_ar.world`, is loaded in `sdl_gazebo/launch/lab_world.launch`.
 
 ## Useful Links
 [Creating Moveit config file](http://docs.ros.org/en/melodic/api/moveit_tutorials/html/doc/setup_assistant/setup_assistant_tutorial.html)
@@ -140,12 +131,8 @@ MiR/UR Vention Mounting Module for UR5e, MiR200
 
 [ROS plugin list](http://gazebosim.org/tutorials?tut=ros_gzplugins&cat=connect_ros)
 
-[PointCloud2 message](http://docs.ros.org/en/melodic/api/sensor_msgs/html/msg/PointCloud2.html)
-
 [YAML format for map](https://wiki.ros.org/map_server)
 
 [Saving Gazebo world bug](https://stackoverflow.com/a/67088987)
-
-[2F140 gripper](https://github.com/ros-industrial/robotiq)
 
 [Creating AR Tags](https://github.com/mikaelarguedas/gazebo_models)
