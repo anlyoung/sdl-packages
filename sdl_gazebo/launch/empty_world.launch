@@ -10,6 +10,7 @@
   <arg name="tf_prefix" default="" doc="tf_prefix to be used by gazebo plugins and in the robot's urdf etc." />
 
   <arg name="namespace" default="$(arg tf_prefix)" doc="Namespace to push all topics into."/>
+  
 
   <group if="$(eval namespace != '')">
     <group>
@@ -19,7 +20,7 @@
 
       <include file="$(find gazebo_ros)/launch/empty_world.launch">
         <!-- the problem lies in this line - changing the world file -->
-        <arg name="world_name" value="$(find sdl_gazebo)/world/gazebo_world.world"/>
+        <arg name="world_name" value="$(find sdl_gazebo)/world/gazebo_world_v2.world"/>
         <arg name="paused" value="false" />
         <arg name="gui" value="$(arg gui)" />
       </include>
@@ -49,7 +50,7 @@
 
       <include file="$(find gazebo_ros)/launch/empty_world.launch">
         <!-- the problem lies in this line - changing the world file -->
-        <arg name="world_name" value="$(find sdl_gazebo)/world/gazebo_world.world"/>
+        <arg name="world_name" value="$(find sdl_gazebo)/world/gazebo_world_v2.world"/>
         <arg name="paused" value="true" />
         <arg name="gui" value="$(arg gui)" />
       </include>

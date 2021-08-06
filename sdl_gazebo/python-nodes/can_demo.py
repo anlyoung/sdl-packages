@@ -30,10 +30,12 @@ def main():
         pass
     
     pose = Pose()
-    pose.position.x = 1.24
-    pose.position.z = .787
-    pose.orientation.y = .707
-    pose.orientation.w = .707
+    pose.position.x = 1.35
+    pose.position.z = .9
+    pose.orientation.y = .5
+    pose.orientation.w = .5
+    pose.orientation.x = 0.5
+    pose.orientation.z = 0.5
     arm_pub.publish(pose)
 
 def lock_control(data):
