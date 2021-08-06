@@ -96,7 +96,13 @@ The MoveIt configuration for the arm is `sdl_moveit_config`. It was created with
 
 The URDF is obtained [here](https://github.com/fmauch/universal_robot/tree/calibration_devel)
 
-Basic joint control of the arm is implemented through the `limb.py` class in `sdl_interface`. As of 6 August 2021, the `set_joints_position()` function works to publish joint commands to gazebo. Other functions are not tested or implemented. TODO: `limb.py` has functions for end effector positioning. There is not an inverse kinematics implementation to use this.
+Basic joint control of the arm is implemented through the `limb.py` class in `sdl_interface`. As of 6 August 2021, the `set_joints_position()` function works to publish joint commands to gazebo. This is demonstrated by the following launch command:
+
+`roslaunch sdl_application test_limb_class.launch`
+
+You will get errors that the velocity is not specified. This does not seem to effect functionality.
+
+Other functions are not tested or implemented. TODO: `limb.py` has functions for end effector positioning. There is not an inverse kinematics implementation to use this.
 
 ### MIR Navigation
 
