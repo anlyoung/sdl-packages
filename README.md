@@ -5,7 +5,7 @@ This repository holds code for the SDL simulation project at Argonne National La
 ## Setup
 Assuming ROS Melodic is installed.
 
-Make sure git LFS is installed. Documentation for git lfs can be found [here](https://git-lfs.github.com/)
+(DEPRECATED. 6 August 2021 No need to install git lfs) Make sure git LFS is installed. Documentation for git lfs can be found [here](https://git-lfs.github.com/)
 
 `git lfs install`
 
@@ -33,6 +33,7 @@ git clone https://github.com/UniversalRobots/Universal_Robots_ROS_Driver.git
 git clone -b calibration_devel https://github.com/fmauch/universal_robot.git
 git clone -b melodic https://github.com/dfki-ric/mir_robot.git
 git clone https://github.com/ros-industrial/robotiq.git
+git clone https://github.com/dsquez/sdl-application.git
 ```
 
 Go back to workspace base, install dependencies, and build:
@@ -50,6 +51,7 @@ Source the new workspace:
 
 ## Running
 
+### Demo of moveit planning
 Run the launch file:
 
 `roslaunch sdl_gazebo sdl_nav_moveit_combined.launch`
@@ -67,7 +69,7 @@ When you see the message:
 
 `[ INFO] [1627157159.619626329, 18.202000000]: Ready to take commands for planning group ur_arm.`
 
-You are ready to proceed.
+You are ready to proceed. You can run the following python script or publish to the `/ur_arm/moveit/goal_pose` topic
 
 ### Demo Picking Up Can
 `python sdl_gazebo/python-nodes/can_demo_no_camera.py`
@@ -93,6 +95,8 @@ The main launch file, `sdl_gazebo/launch/sdl_nav_moveit_combined.launch`, makes 
 The MoveIt configuration for the arm is `sdl_moveit_config`. It was created with the help of the MoveIt setup assistant.
 
 The URDF is obtained [here](https://github.com/fmauch/universal_robot/tree/calibration_devel)
+
+Basic joint control of the arm is implemented through the `limb.py` class in `sdl_interface`. As of 6 August 2021, the `set_joints_position()` function works to publish joint commands to gazebo. Other functions are not tested or implemented. TODO: `limb.py` has functions for end effector positioning. There is not an inverse kinematics implementation to use this.
 
 ### MIR Navigation
 
