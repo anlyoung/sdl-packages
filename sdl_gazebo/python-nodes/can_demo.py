@@ -42,9 +42,9 @@ def lock_control(data):
 def kinect_to_arm(position):
     out = Point()
     out.x = .5
-    out.z = .9
+    out.z = .8
     out.z += position.y
-    out.y += position.x
+    out.y -= position.x
     out.x += position.z
     return out
 
@@ -57,6 +57,8 @@ def marker_position(data):
         arm_to_can(data)
         rospy.sleep(5)
         close_gripper()
+        rospy.sleep(1)
+        fold_arm()
         done = True
 
 def arm_to_can(data):
@@ -64,7 +66,11 @@ def arm_to_can(data):
     pose.position = kinect_to_arm(data.markers[0].pose.pose.position)
     pose.orientation.y = .707
     pose.orientation.w = .707
+    pose.position.x -= .1
     global arm_pub
+    arm_pub.publish(pose)
+    rospy.sleep(4)
+    pose.position.x += .1
     arm_pub.publish(pose)
 
 def go_to_can():

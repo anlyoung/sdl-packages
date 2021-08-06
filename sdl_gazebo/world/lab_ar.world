@@ -296,18 +296,8 @@
     <state world_name='default'>
       <sim_time>0 0</sim_time>
       <real_time>0 0</real_time>
-      <wall_time>1628103261 521408468</wall_time>
+      <wall_time>1628265921 429522090</wall_time>
       <iterations>0</iterations>
-      <model name='Marker0'>
-        <pose frame=''>-3.80256 -1.93318 0.78 0 -0 0</pose>
-        <scale>1 1 1</scale>
-        <link name='link'>
-          <pose frame=''>-3.80256 -1.93318 0.78 0 -0 0</pose>
-          <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0 0 0 0 -0 0</acceleration>
-          <wrench>0 0 0 0 -0 0</wrench>
-        </link>
-      </model>
       <model name='basic_stool'>
         <pose frame=''>-5.1224 -1.50133 0.5 0 -0 0</pose>
         <scale>1 1 1</scale>
@@ -373,16 +363,6 @@
         <scale>1 1 1</scale>
         <link name='link'>
           <pose frame=''>3.01684 0.498021 0.5 0 -0 0</pose>
-          <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0 0 0 0 -0 0</acceleration>
-          <wrench>0 0 0 0 -0 0</wrench>
-        </link>
-      </model>
-      <model name='beer'>
-        <pose frame=''>-3.87689 -1.94764 0.786862 0 -0 0</pose>
-        <scale>1 1 1</scale>
-        <link name='link'>
-          <pose frame=''>-3.87689 -1.94764 0.901862 0 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
@@ -543,6 +523,16 @@
         <scale>1 1 1</scale>
         <link name='link'>
           <pose frame=''>0.099594 -2.68985 0 0 -0 1.57</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='tag_box'>
+        <pose frame=''>-3.8 -1.95782 0.78 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose frame=''>-3.8 -1.95782 0.895 0 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
@@ -1999,62 +1989,6 @@
       </link>
       <pose frame=''>3.85382 0.642905 0 0 -0 0</pose>
     </model>
-    <model name='beer'>
-      <link name='link'>
-        <pose frame=''>0 0 0.115 0 -0 0</pose>
-        <inertial>
-          <mass>0.39</mass>
-          <inertia>
-            <ixx>0.00058</ixx>
-            <ixy>0</ixy>
-            <ixz>0</ixz>
-            <iyy>0.00058</iyy>
-            <iyz>0</iyz>
-            <izz>0.00019</izz>
-          </inertia>
-        </inertial>
-        <collision name='collision'>
-          <geometry>
-            <cylinder>
-              <radius>0.055</radius>
-              <length>0.23</length>
-            </cylinder>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
-            <friction>
-              <torsional>
-                <ode/>
-              </torsional>
-              <ode/>
-            </friction>
-          </surface>
-        </collision>
-        <visual name='visual'>
-          <geometry>
-            <cylinder>
-              <radius>0.055</radius>
-              <length>0.23</length>
-            </cylinder>
-          </geometry>
-          <material>
-            <script>
-              <uri>model://beer/materials/scripts</uri>
-              <uri>model://beer/materials/textures</uri>
-              <name>Beer/Diffuse</name>
-            </script>
-          </material>
-        </visual>
-        <self_collide>0</self_collide>
-        <enable_wind>0</enable_wind>
-        <kinematic>0</kinematic>
-      </link>
-      <pose frame=''>-3.32685 -1.94764 0 0 -0 0</pose>
-    </model>
     <model name='cardboard_box'>
       <pose frame=''>-2.17823 2.20531 0.15 0 -0 0</pose>
       <link name='link'>
@@ -2467,28 +2401,11 @@
     </model>
     <gui fullscreen='0'>
       <camera name='user_camera'>
-        <pose frame=''>3.32333 0.1908 2.49007 -0 0.457796 3.00018</pose>
+        <pose frame=''>0.582879 -1.81464 2.40625 -0 0.457796 3.00018</pose>
         <view_controller>orbit</view_controller>
         <projection_type>perspective</projection_type>
       </camera>
     </gui>
-    <model name='Marker0'>
-      <static>1</static>
-      <link name='link'>
-        <visual name='visual'>
-          <geometry>
-            <mesh>
-              <uri>model://marker0/meshes/Marker0.dae</uri>
-              <scale>0.4 0.4 0.4</scale>
-            </mesh>
-          </geometry>
-        </visual>
-        <self_collide>0</self_collide>
-        <enable_wind>0</enable_wind>
-        <kinematic>0</kinematic>
-      </link>
-      <pose frame=''>-3.90256 -1.81318 0 0 -0 0</pose>
-    </model>
     <model name='beer_0'>
       <link name='link'>
         <pose frame=''>0 0 0.115 0 -0 0</pose>
@@ -2544,6 +2461,60 @@
         <kinematic>0</kinematic>
       </link>
       <pose frame=''>-3.937 0.860053 0 0 -0 0</pose>
+    </model>
+    <model name='tag_box'>
+      <link name='link'>
+        <pose frame=''>0 0 0.115 0 -0 0</pose>
+        <inertial>
+          <mass>0.39</mass>
+          <inertia>
+            <ixx>0.00058</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.00058</iyy>
+            <iyz>0</iyz>
+            <izz>0.00019</izz>
+          </inertia>
+        </inertial>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.1 0.1 0.1</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.1 0.1 0.1</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://ar_box/materials/scripts</uri>
+              <uri>model://ar_box/materials/textures</uri>
+              <name>TagBox</name>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose frame=''>-4.0457 -1.95782 0 0 -0 0</pose>
     </model>
   </world>
 </sdf>
