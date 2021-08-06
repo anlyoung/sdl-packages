@@ -88,11 +88,12 @@ def go_to_can():
 def fold_arm():
     global arm_pub
     pose = Pose()
-    pose.position.x = .7
-    pose.position.y = 0
-    pose.position.z = 1.3
-    pose.orientation.y = .707
-    pose.orientation.w = .707
+    pose.position.x = 1.35
+    pose.position.z = .9
+    pose.orientation.y = .5
+    pose.orientation.w = .5
+    pose.orientation.x = 0.5
+    pose.orientation.z = 0.5
     arm_pub.publish(pose)
     rospy.sleep(5)
 
