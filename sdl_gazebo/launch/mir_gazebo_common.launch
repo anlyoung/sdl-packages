@@ -11,20 +11,6 @@
 
   <arg name="model_name" default="mir" doc="Name of the Gazebo robot model (needs to be different for each robot)" />
 
-
-  <!-- Load URDF -->
-  <include file="$(find sdl_robot_description)/launch/sdl_upload.launch">
-    <arg name="tf_prefix" value="$(arg tf_prefix)" />
-  </include>
-
-  <!-- Spawn the robot into Gazebo -->
-  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model $(arg model_name)
-    -x $(arg robot_x) -y $(arg robot_y) -Y $(arg robot_yaw) " />
-
-  <!-- Load ros_control controller configurations -->
-  <rosparam file="$(find mir_description)/config/joint_state_controller.yaml" command="load" />
-  <rosparam file="$(find mir_description)/config/diffdrive_controller.yaml" command="load" subst_value="true" />
-
   <!-- EKF -->
   <include file="$(find mir_gazebo)/launch/includes/ekf.launch.xml">
       <arg name="tf_prefix" value="$(arg prefix)" />

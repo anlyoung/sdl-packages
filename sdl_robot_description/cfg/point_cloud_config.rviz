@@ -6,6 +6,7 @@ Panels:
       Expanded:
         - /Global Options1
         - /Status1
+        - /Grid1
         - /PointCloud21
         - /Image1
         - /Marker1
@@ -29,7 +30,7 @@ Panels:
     Experimental: false
     Name: Time
     SyncMode: 0
-    SyncSource: PointCloud2
+    SyncSource: ""
 Preferences:
   PromptSaveOnExit: true
 Toolbars:
@@ -133,25 +134,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 12.543999671936035
+      Distance: 10.454054832458496
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: -3.750875473022461
-        Y: -0.2305068075656891
-        Z: -0.27516478300094604
+        X: -0.3335447907447815
+        Y: 0.18218912184238434
+        Z: 0.14680983126163483
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.8302035331726074
+      Pitch: -1.454796314239502
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 4.693583965301514
+      Yaw: 4.693587303161621
     Saved: ~
 Window Geometry:
   Displays:
@@ -172,4 +173,4 @@ Window Geometry:
     collapsed: false
   Width: 1267
   X: 67
-  Y: 30
+  Y: 27

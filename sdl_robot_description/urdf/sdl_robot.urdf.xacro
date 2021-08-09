@@ -4,35 +4,70 @@
 
   <!-- mir-->
   <xacro:include filename="$(find mir_description)/urdf/mir.urdf.xacro" />
-
   <!-- connecting hardware -->
   <xacro:include filename="$(find sdl_robot_description)/urdf/connecting_hardware.urdf.xacro" />
 
+  <joint name="${prefix}hardware_to_mir" type="fixed">
+    <parent link="${prefix}base_footprint"/>
+    <child link="${prefix}connecting_hardware"/>
+    <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+  </joint>
+
   <!-- ur5e arm -->
   <xacro:include filename="$(find sdl_robot_description)/urdf/inc/ur5e_macro.xacro" />
-  <xacro:ur5e_robot prefix="ur5e_" />
+  <xacro:ur5e_robot prefix="${prefix}ur5e_" />
+
+  <joint name="${prefix}ur_to_hardware" type="fixed">
+    <parent link="${prefix}connecting_hardware"/>
+    <child link="${prefix}ur5e_base_link"/>
+    <origin xyz="0.325 0.0 0.85" rpy="0.0 0.0 0.0"/>
+  </joint>
 
   <!-- gripper -->
   <xacro:include filename="$(find robotiq_2f_140_gripper_visualization)/urdf/robotiq_arg2f_140_model_macro.xacro" />
   <xacro:robotiq_arg2f_140 prefix=""/>
-  <joint name="gripper_to_arm" type="fixed" >
-    <parent link="ur5e_tool0" />
-    <child link="robotiq_arg2f_base_link" />
+
+  <joint name="${prefix}gripper_to_ur" type="fixed" >
+    <parent link="${prefix}ur5e_tool0" />
+    <child link="${prefix}robotiq_arg2f_base_link" />
   </joint>
 
-  <transmission name="right_outer_knuckle_joint_trans">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="right_outer_knuckle_joint">
-      <hardwareInterface>PositionJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="right_outer_knuckle_joint_motor">
-      <mechanicalReduction>1</mechanicalReduction>
-    </actuator>
-  </transmission>
-
+  <gazebo>
+      <!-- loading plugin: mimic joints works in gazebo now-->
+    <plugin filename="libroboticsgroup_upatras_gazebo_mimic_joint_plugin.so" name="${prefix}mimic_robotiq_140_4">
+        <joint>${prefix}finger_joint</joint>
+        <mimicJoint>${prefix}right_outer_knuckle_joint</mimicJoint>
+        <multiplier>-1.0</multiplier>
+    </plugin>
+    <plugin filename="libroboticsgroup_upatras_gazebo_mimic_joint_plugin.so" name="${prefix}mimic_robotiq_140_2">
+        <joint>${prefix}finger_joint</joint>
+        <mimicJoint>${prefix}left_inner_finger_joint</mimicJoint>
+        <multiplier>1.0</multiplier>
+    </plugin>
+    <plugin filename="libroboticsgroup_upatras_gazebo_mimic_joint_plugin.so" name="${prefix}mimic_robotiq_140_5">
+        <joint>${prefix}finger_joint</joint>
+        <mimicJoint>${prefix}right_inner_finger_joint</mimicJoint>
+        <multiplier>1.0</multiplier>
+    </plugin>
+    <plugin filename="libroboticsgroup_upatras_gazebo_mimic_joint_plugin.so" name="${prefix}mimic_robotiq_140_3">
+        <joint>${prefix}finger_joint</joint>
+        <mimicJoint>${prefix}left_inner_knuckle_joint</mimicJoint>
+        <multiplier>-1.0</multiplier>
+    </plugin>
+    <plugin filename="libroboticsgroup_upatras_gazebo_mimic_joint_plugin.so" name="${prefix}mimic_robotiq_140_5">
+        <joint>${prefix}finger_joint</joint>
+        <mimicJoint>${prefix}right_inner_knuckle_joint</mimicJoint>
+        <multiplier>-1.0</multiplier>
+    </plugin>
+  </gazebo>
 
   <!-- camera -->
   <xacro:include filename="$(find sdl_robot_description)/urdf/camera.urdf.xacro" />
 
+  <joint name="${prefix}camera_to_hardware" type="fixed">
+    <parent link="${prefix}connecting_hardware"/>
+    <child link="${prefix}camera"/>
+    <origin xyz=".5 0 .9" rpy="0 0 0"/>
+  </joint>
 
 </robot>

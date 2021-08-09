@@ -34,6 +34,8 @@ git clone -b calibration_devel https://github.com/fmauch/universal_robot.git
 git clone -b melodic https://github.com/dfki-ric/mir_robot.git
 git clone https://github.com/ros-industrial/robotiq.git
 git clone https://github.com/dsquez/sdl-application.git sdl_application
+git clone https://github.com/roboticsgroup/roboticsgroup_upatras_gazebo_plugins.git
+git clone https://github.com/pal-robotics/gazebo_ros_link_attacher.git
 ```
 
 Go back to workspace base, install dependencies, and build:
@@ -72,7 +74,7 @@ When you see the message:
 You are ready to proceed. You can run the following python script or publish to the `/ur_arm/moveit/goal_pose` topic
 
 ### Demo Picking Up Can
-`python sdl_gazebo/python-nodes/can_demo_no_camera.py`
+`python sdl_gazebo/python-nodes/can_demo.py`
 
 ## Details
 

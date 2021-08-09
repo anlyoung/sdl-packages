@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<launch>
+
+  <arg name="prefix" default=""/>
+
+  <!-- Load joint controller configurations from YAML file to parameter server -->
+  <rosparam file="$(find sdl_moveit_config)/config/ros_controllers.yaml" command="load" subst_value="true"/>
+  <rosparam file="$(find sdl_moveit_config)/config/gazebo_controller.yaml" command="load" subst_value="true"/>
+  <rosparam file="$(find sdl_gazebo)/config/gripper_control.yaml" command="load" subst_value="true"/>
+  <rosparam file="$(find mir_description)/config/joint_state_controller.yaml" command="load" />
+  <rosparam file="$(find mir_description)/config/diffdrive_controller.yaml" command="load" subst_value="true" />
+  
+  <!-- Load the controllers -->
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+    output="screen" args="joint_state_controller effort_traj_controller mobile_base_controller left_gripper_position_controller"/>
+
+</launch>
