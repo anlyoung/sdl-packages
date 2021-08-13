@@ -102,7 +102,7 @@ The Kinect sensor input can be visualization by running RVIZ with the configurat
 
 ### Ar Tag Recognition
 
-This [library](http://wiki.ros.org/ar_track_alvar) is used to track AR tags. AR tag location is published to `/ar_pose_marker`. The AR tracking node is started in `sdl_gazebo/launch/ar_camera.launch`. Make sure to set the marker_size parameter (in centimeters).
+This [library](http://wiki.ros.org/ar_track_alvar) is used to track AR tags. AR tag location is published to `/ar_pose_marker`. To start the AR tracking node, launch`sdl_gazebo/launch/ar_camera.launch`. Make sure to set the marker_size parameter (in centimeters).
 
 ## Useful Links
 [Creating Moveit config file](http://docs.ros.org/en/melodic/api/moveit_tutorials/html/doc/setup_assistant/setup_assistant_tutorial.html)
