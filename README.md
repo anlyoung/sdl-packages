@@ -98,6 +98,8 @@ The 2F140 Gripper ([source](https://github.com/ros-industrial/robotiq)) is contr
 
 The Microsoft Kinect uses the `libgazebo_ros_openni_kinect.so` plugin to simulate sensor data. Point cloud data is published to `/camera/depth/points`. The URDF is found here: `sdl_robot_description/urdf/camera.urdf.xacro`.
 
+The Kinect sensor input can be visualization by running RVIZ with the configuration `$(find sdl_robot_description)/cfg/point_cloud_config.rviz`.
+
 ### Ar Tag Recognition
 
 This [library](http://wiki.ros.org/ar_track_alvar) is used to track AR tags. AR tag location is published to `/ar_pose_marker`. The AR tracking node is started in `sdl_gazebo/launch/ar_camera.launch`. Make sure to set the marker_size parameter (in centimeters).
