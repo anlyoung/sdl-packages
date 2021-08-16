@@ -74,7 +74,7 @@ MoveIt is started by running `roslaunch sdl_moveit_config move_group.launch`
   
 `sdl_gazebo/src/sdl_moveit_node.py` starts up a ROS node that subscribes to `/ur_arm/moveit/goal_pose`. When this topic is published to, the Python code uses MoveIt to control the arm. 
 
-The URDF of the arm is obtained [here](https://github.com/fmauch/universal_robot/tree/calibration_devel)
+The URDF of the arm is found here: `$(find sdl_robot_description)/urdf/inc/ur5e_macro.xacro`([source](https://github.com/fmauch/universal_robot/tree/calibration_devel)).
 
 Basic joint control of the arm is implemented through the `limb.py` class in `sdl_interface`. 
 
