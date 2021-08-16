@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro"
+       name="sdl_robot" >
+
+  <!-- mir-->
+  <xacro:include filename="$(find mir_description)/urdf/mir.urdf.xacro" />
+  <!-- connecting hardware -->
+  <xacro:include filename="$(find sdl_robot_description)/urdf/connecting_hardware.urdf.xacro" />
+
+  <joint name="${prefix}hardware_to_mir" type="fixed">
+    <parent link="${prefix}base_footprint"/>
+    <child link="${prefix}connecting_hardware"/>
+    <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+  </joint>
+
+  <!-- ur5e arm -->
+  <xacro:include filename="$(find sdl_robot_description)/urdf/inc/ur5e_macro.xacro" />
+  <xacro:ur5e_robot prefix="${prefix}ur5e_" />
+
+  <joint name="${prefix}ur_to_hardware" type="fixed">
+    <parent link="${prefix}connecting_hardware"/>
+    <child link="${prefix}ur5e_base_link"/>
+    <origin xyz="0.325 0.0 0.85" rpy="0.0 0.0 0.0"/>
+  </joint>
+
+  <!-- gripper -->
+  <xacro:include filename="$(find sdl_robot_description)/urdf/2f140.urdf.xacro" />
+
+  <joint name="${prefix}gripper_to_ur" type="fixed" >
+    <parent link="${prefix}ur5e_tool0" />
+    <child link="${prefix}robotiq_arg2f_base_link" />
+  </joint>
+
+  <!-- camera -->
+  <xacro:include filename="$(find sdl_robot_description)/urdf/camera.urdf.xacro" />
+
+  <joint name="${prefix}camera_to_hardware" type="fixed">
+    <parent link="${prefix}connecting_hardware"/>
+    <child link="${prefix}camera"/>
+    <origin xyz=".5 0 .9" rpy="0 0 0"/>
+  </joint>
+
+</robot>

@@ -34,6 +34,11 @@ git clone https://github.com/roboticsgroup/roboticsgroup_upatras_gazebo_plugins.
 git clone https://github.com/pal-robotics/gazebo_ros_link_attacher.git
 ```
 
+Move Gazebo models:
+```
+cp sdl-packages/sdl_gazebo/models/ar_box ~/.gazebo/models -r
+```
+
 Go back to workspace base, install dependencies, and build:
 ```
 cd ..

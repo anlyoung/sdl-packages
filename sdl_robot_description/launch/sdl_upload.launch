@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="limited" default="false" doc="If true, limits joint range [-PI, PI] on all joints." />
+  <arg name="tf_prefix" default="" />
+  <arg name="kinematics_params" default=""/>
+  <param unless="$(arg limited)" name="robot_description" command="$(find xacro)/xacro --inorder '$(find sdl_robot_description)/urdf/sdl_robot.urdf.xacro' tf_prefix:=$(arg tf_prefix)" />
+  <param if="$(arg limited)" name="robot_description" command="$(find xacro)/xacro --inorder '$(find sdl_robot_description)/urdf/ur5e_joint_limited_robot.urdf.xacro'" />
+</launch>
