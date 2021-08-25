@@ -1,0 +1,10 @@
+<launch>
+    <include file="$(find sdl_gazebo)/launch/sdl_robot.launch">
+        <!-- <arg name="tf_prefix" value="/robot"/> -->
+    </include>
+    
+    <include file="$(find sdl_moveit_config)/launch/ros_controllers.launch">
+        
+    </include>
+
+</launch>

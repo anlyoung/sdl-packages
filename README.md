@@ -20,7 +20,7 @@ Create a workspace for the project:
 Go into the workspace and clone the repository:
 ```
 cd catkin_ws/src
-git clone https://github.com/dsquez/sdl-packages.git
+git clone https://github.com/anlyoung/sdl-packages.git
 ```
 
 Clone other repositories that we're using
@@ -29,7 +29,7 @@ git clone https://github.com/UniversalRobots/Universal_Robots_ROS_Driver.git
 git clone -b calibration_devel https://github.com/fmauch/universal_robot.git
 git clone -b melodic https://github.com/dfki-ric/mir_robot.git
 git clone https://github.com/ros-industrial/robotiq.git
-git clone https://github.com/dsquez/sdl-application.git sdl_application
+git clone https://github.com/anlyoung/sdl-application.git sdl_application
 git clone https://github.com/roboticsgroup/roboticsgroup_upatras_gazebo_plugins.git
 git clone https://github.com/pal-robotics/gazebo_ros_link_attacher.git
 ```
@@ -51,6 +51,31 @@ catkin_make
 Source the new workspace:
 
 `source catkin_ws/devel/setup.bash`
+
+## Running
+
+### Demo of moveit planning
+Run the launch file:
+
+`roslaunch sdl_gazebo sdl_nav_moveit_combined.launch`
+
+The gazebo window is launched in a paused state to give the controllers enough time to initialize, when you see the message:
+
+`[ WARN] [1627157134.932762011]: service '/get_planning_scene' not advertised yet. Continue waiting...
+[ INFO] [1627157134.933636210]: waitForService: Service [/get_planning_scene] has not been advertised, waiting... `
+
+**Press the play button in Gazebo.** You will see the arm oscillate slightly. This can be mitigated in the future with controller gain tuning.
+
+When you see the message:
+
+`You can start planning now!`
+
+`[ INFO] [1627157159.619626329, 18.202000000]: Ready to take commands for planning group ur_arm.`
+
+You are ready to proceed. You can run the following python script or publish to the `/ur_arm/moveit/goal_pose` topic
+
+### Demo Picking Up Can
+`python sdl_gazebo/src/can_demo.py`
 
 ## Details
 
