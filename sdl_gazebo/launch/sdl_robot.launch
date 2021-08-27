@@ -16,10 +16,20 @@
     <arg name="limited" value="$(arg limited)"/>
   </include>
 
+  <!-- Start MoveIt -->
+  <include file="$(find sdl_moveit_config)/launch/move_group.launch"> 
+      <arg name="allow_trajectory_execution" value="true"/>
+      <arg name="fake_execution" value="false"/>
+      <arg name="info" value="true"/>
+  </include>
+
+  <!-- Start the node to control the arm with MoveIt -->
+  <node name="ur_python_planner" pkg="sdl_gazebo" type="sdl_moveit_node.py" output="screen" />
+
   <!-- push robot_description to factory and spawn robot in gazebo -->
   <node name="spawn_gazebo_model" pkg="gazebo_ros" type="spawn_model" args="-urdf -param robot_description -model robot -z 0.1" respawn="false" output="screen" />
 
-  <!-- <include file="$(find mir_gazebo)/launch/includes/spawn_maze.launch.xml" /> -->
+  <include file="$(find sdl_gazebo)/launch/ros_controllers.launch" />
 
   <!-- <include file="$(find ur_e_gazebo)/launch/controller_utils.launch"/> -->
 
