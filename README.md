@@ -5,10 +5,6 @@ This repository holds code for the SDL simulation project at Argonne National La
 ## Setup
 Assuming ROS Melodic is installed.
 
-Install the AR library:
-
-`sudo apt-get install ros-melodic-ar-track-alvar`
-
 Install MoveIt:
 
 `sudo apt-get install ros-melodic-moveit`
@@ -34,11 +30,6 @@ git clone https://github.com/roboticsgroup/roboticsgroup_upatras_gazebo_plugins.
 git clone https://github.com/pal-robotics/gazebo_ros_link_attacher.git
 ```
 
-Move Gazebo models:
-```
-cp sdl-packages/sdl_gazebo/models/ar_box ~/.gazebo/models -r
-```
-
 Go back to workspace base, install dependencies, and build:
 ```
 cd ..
@@ -54,10 +45,21 @@ Source the new workspace:
 
 ## Running
 
-### Demo of moveit planning
-Run the launch file:
+To see the rviz visualization, make sure ros and the workspace are sourced adn run
 
-`roslaunch sdl_gazebo sdl_nav_moveit_combined.launch`
+`roslaunch sdl_robot_description view_sdl.launch`
+
+To launch the gazebo simulation, run
+
+`roslaunch sdl_gazebo sdl_robot.launch`
+
+(If the above not working, it may be due to activation of controllers. In that case, run)
+(`roslaunch sdl_gazebo sdl_gazebo_sim.launch`) 
+
+### Demo of moveit planning
+In a terminal with the workspace sourced, run
+
+`roslaunch sdl_gazebo sdl_nav_moveit_basic.launch`
 
 The gazebo window is launched in a paused state to give the controllers enough time to initialize, when you see the message:
 
@@ -72,10 +74,21 @@ When you see the message:
 
 `[ INFO] [1627157159.619626329, 18.202000000]: Ready to take commands for planning group ur_arm.`
 
-You are ready to proceed. You can run the following python script or publish to the `/ur_arm/moveit/goal_pose` topic
+You are ready to proceed. You can publish to the `/ur_arm/moveit/goal_pose` topic.
+Open another terminal and enter the following
 
-### Demo Picking Up Can
-`python sdl_gazebo/src/can_demo.py`
+`rostopic pub -1 /ur_arm/moveit/goal_pose geometry_msgs/Pose "position: x: 1.2 y: 0.0 z: 1.5 orientation: x: 0.0 y: 0.707 z: 0.0 w: 0.707"`
+
+You should see the arm move to the planned position. You will probably see an error that the controllers failed. This is another gain tuning issue, as the arm is not quite getting to the goal state indicated.
+
+### Controlling with Python
+Once the gazebo simulation is running, execute
+
+`python sdl_gazebo/python-nodes/demo.py`
+
+To see the Kinect camera sensor information, run
+
+`rosrun rviz rviz -d 'rospack sdl_robot_description'/cfg/point_cloud_config.rviz`
 
 ## Details
 
