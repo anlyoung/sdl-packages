@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro"
+       name="sdl_robot" >
+
+  <!-- common stuff -->
+ <!-- <xacro:include filename="$(find sdl_robot_description)/urdf/common.gazebo.xacro" />-->
+
+  <!-- mir-->
+  <!--<xacro:include filename="$(find sdl_robot_description)/urdf/mir.urdf.xacro" />-->
+  <xacro:include filename="$(find mir_description)/urdf/mir.urdf.xacro" />
+  <!-- connecting hardware -->
+  <!--<xacro:include filename="$(find sdl_robot_description)/urdf/connecting_hardware4.urdf.xacro" />-->
+  <xacro:include filename="$(find sdl_robot_description)/urdf/connecting_hardware4.urdf.xacro" />
+
+  <!-- ur5e arm -->
+  <xacro:include filename="$(find ur_description)/urdf/inc/ur5e_macro.xacro" />
+  <xacro:ur5e_robot prefix="ur5e_" />
+
+  <!-- ur16e arm -->
+  <xacro:include filename="$(find ur_description)/urdf/inc/ur16e_macro.xacro" />
+  <xacro:ur5e_robot prefix="ur16e_" />
+s
+
+</robot>

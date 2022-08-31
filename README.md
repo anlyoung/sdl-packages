@@ -2,7 +2,7 @@
 
 This repository holds code for the SDL simulation project at Argonne National Laboratory/University of Chicago. It provides controllers and robot models that allow users to create simulations.
 
-## Setup
+# Setup
 Assuming ROS Melodic is installed.
 
 Install MoveIt:
@@ -43,52 +43,73 @@ Source the new workspace:
 
 `source catkin_ws/devel/setup.bash`
 
-## Running
+# Running:  
+## SDL robot model 
+The URDF robot model is in sdl-packages/sdl_robot_description package. 
 
-To see the rviz visualization, make sure ros and the workspace are sourced adn run
+To view the SDL robot model in Rviz, launch
 
 `roslaunch sdl_robot_description view_sdl.launch`
 
-To launch the gazebo simulation, run
+This will open the robot model in Rviz, and a joint_state_publisher_gui with which you can move each joint.
+
+## Demo of robot arm motion planning with MoveIt! in rviz interactive session
+MoveIt! is a motion planning package. 
+(sdl-packages/sdl_moveit_config package is generated using Moveit setup assitant.)
+To run a simple demo of robot arm motion planning with MoveIt! in rviz interactive session, launch
+
+`roslaunch sdl_moveit_config demo.launch` 
+
+## Gazebo simulator
+Gazebo simulator can replace the real robot in the absence of a real robot.  
+To launch Gazebo simulator of the robot arm and MoveIt! Rviz, launch
+
+`roslaunch sdl_moveit_config demo_gazebo.launch`
+
+A gazebo simulator is launched in a paused state to give the controllers enough time to initialize, 
+Press `Play` button on Gazebo, and wait until `You can start planning now!` to come up.
+
+Use the interactive marker in rviz to perform motion planning and execute the arm motion in the gazebo simulation. 
+
+## Gazebo Simulator with controllers for the arm, gripper, and mobile robot
+
+A more complete simulator of the sdl robot with controlers for the arm, gripper, and mobile base is implemented in sdl_gazebo package. To launch the complete sdl robot simulator, run
+
+`roslaunch sdl_gazebo sdl_gazebo_sim.launch`
+
+(This is equivalent to a series of launch files below:
 
 `roslaunch sdl_gazebo sdl_robot.launch`
 
-(If the above not working, it may be due to activation of controllers. In that case, run)
-(`roslaunch sdl_gazebo sdl_gazebo_sim.launch`) 
+`roslaunch sdl_moveit_config move_group.launch`
 
-### Demo of moveit planning
-In a terminal with the workspace sourced, run
+`rosrun $(rospack find sdl_gazebo) sdl_moveit_node.py`
+)
 
-`roslaunch sdl_gazebo sdl_nav_moveit_basic.launch`
+Press `Play` button on Gazebo, and wait until `You can start planning now!` to come up. 
 
-The gazebo window is launched in a paused state to give the controllers enough time to initialize, when you see the message:
+You can publish to the `/ur_arm/moveit/goal_pose` topic. Open another terminal and enter the following
 
-`[ WARN] [1627157134.932762011]: service '/get_planning_scene' not advertised yet. Continue waiting...
-[ INFO] [1627157134.933636210]: waitForService: Service [/get_planning_scene] has not been advertised, waiting... `
+`rostopic pub -1 /ur_arm/moveit/goal_pose geometry_msgs/Pose -- '[1.0, 0.0, 1.0]' '[0.0, 0.707, 0.0, 0.707]'`
 
-**Press the play button in Gazebo.** You will see the arm oscillate slightly. This can be mitigated in the future with controller gain tuning.
-
-When you see the message:
-
-`You can start planning now!`
-
-`[ INFO] [1627157159.619626329, 18.202000000]: Ready to take commands for planning group ur_arm.`
-
-You are ready to proceed. You can publish to the `/ur_arm/moveit/goal_pose` topic.
-Open another terminal and enter the following
-
-`rostopic pub -1 /ur_arm/moveit/goal_pose geometry_msgs/Pose "position: x: 1.2 y: 0.0 z: 1.5 orientation: x: 0.0 y: 0.707 z: 0.0 w: 0.707"`
-
-You should see the arm move to the planned position. You will probably see an error that the controllers failed. This is another gain tuning issue, as the arm is not quite getting to the goal state indicated.
-
-### Controlling with Python
-Once the gazebo simulation is running, execute
-
-`python sdl_gazebo/python-nodes/demo.py`
+You should see the arm move to the planned position. (Sometimes you will probably see an error that the controllers failed. This is another gain tuning issue, as the arm is not quite getting to the goal state indicated.)
 
 To see the Kinect camera sensor information, run
 
-`rosrun rviz rviz -d 'rospack sdl_robot_description'/cfg/point_cloud_config.rviz`
+`rosrun rviz rviz -d $(rospack find 'sdl_robot_description')/cfg/point_cloud_config.rviz`
+
+## Gazebo simulator with Lab environment, and Navigation and camera view
+In a terminal with the workspace sourced, run
+
+`roslaunch sdl_gazebo single_robot.launch`
+
+Once the gazebo simulation is running, execute
+
+`python sdl_gazebo/python-nodes/can_demo_no_camera.py`
+
+For a demo of camera navigation, execute
+
+`python sdl_gazebo/python-nodes/can_demo.py`
 
 ## Details
 
@@ -106,9 +127,9 @@ orientation:
   z: 0.0
   w: 0.707"`
 
-MoveIt is used to control the arm. The configuration `sdl_moveit_config` was created with the help of the MoveIt setup assistant.
+MoveIt! is used to control the arm. The configuration `sdl_moveit_config` was created with the help of the MoveIt setup assistant.
   
-MoveIt is started by running `roslaunch sdl_moveit_config move_group.launch`
+MoveIt! motion planner is started by running `roslaunch sdl_moveit_config move_group.launch`
   
 `sdl_gazebo/src/sdl_moveit_node.py` starts up a ROS node that subscribes to `/ur_arm/moveit/goal_pose`. When this topic is published to, the Python code uses MoveIt to control the arm. 
 
@@ -116,11 +137,19 @@ The URDF of the arm is found here: `$(find sdl_robot_description)/urdf/inc/ur5e_
 
 Basic joint control of the arm is implemented through the `limb.py` class in `sdl_interface`. 
 
-Other functions are not tested or implemented. TODO: `limb.py` has functions for end effector positioning. There is not an inverse kinematics implementation to use this.
+Other functions are not tested or implemented. 
+
+TODO: `limb.py` has functions for end effector positioning. There is not an inverse kinematics implementation to use this.
 
 ### MIR Navigation
 
-The MIR base uses this [library](https://github.com/dfki-ric/mir_robot) to map and navigate. The URDF is in the file `$(find mir_description)/urdf/mir.urdf.xacro`. The controllers are `$(find mir_description)/config/joint_state_controller.yaml` and `$(find mir_description)/config/diffdrive_controller.yaml`.
+The MIR base uses this [library](https://github.com/dfki-ric/mir_robot) to map and navigate. 
+
+The URDF is in the file `$(find mir_description)/urdf/mir.urdf.xacro`. 
+
+The controllers are `$(find mir_description)/config/joint_state_controller.yaml` 
+
+and `$(find mir_description)/config/diffdrive_controller.yaml`.
 
 To enable mapping and navigation, the following must be launched:
 ```

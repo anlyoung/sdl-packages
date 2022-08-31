@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <link name="connecting_hardware" >
+    <visual>
+      <origin xyz="-0.27 -0.27 0.05" rpy="1.57 0 1.57"/>
+      <geometry>
+        <!--<mesh filename="package://sdl_robot_description/meshes/test.STL" scale="0.001 0.001 0.001"/>-->
+        <mesh filename="package://sdl_robot_description/meshes/connection_mockup.stl" scale="0.85 0.9 1.0"/>
+      </geometry>
+      <material name="LightGrey">
+        <color rgba="0.7 0.7 0.7 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="-0.27 -0.27 0.05" rpy="1.57 0 1.57"/>
+      <geometry>
+        <!--<mesh filename="package://sdl_robot_description/meshes/test.STL" scale="0.001 0.001 0.001"/>-->
+        <mesh filename="package://sdl_robot_description/meshes/connection_mockup.stl" scale="0.85 0.9 1.0"/>
+      </geometry>
+    </collision>
+    <inertial>
+        <mass value="5"/>
+        <inertia ixx="100"  ixy="0"  ixz="0" iyy="100" iyz="0" izz="100" />
+        <origin xyz="0 0 0.5" rpy="0 0 0"/>
+    </inertial>
+  </link>
+
+
+</robot>

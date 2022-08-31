@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro"
+       name="sdl_robot" >
+
+  <!-- common stuff -->
+ <!-- <xacro:include filename="$(find sdl_robot_description)/urdf/common.gazebo.xacro" />-->
+
+  <!-- mir-->
+  <!--<xacro:include filename="$(find sdl_robot_description)/urdf/mir.urdf.xacro" />-->
+  <xacro:include filename="$(find mir_description)/urdf/mir.urdf.xacro" />
+  <!-- connecting hardware -->
+  <!--<xacro:include filename="$(find sdl_robot_description)/urdf/connecting_hardware4.urdf.xacro" />-->
+  <xacro:include filename="$(find sdl_robot_description)/urdf/connecting_hardware.urdf.xacro" />
+  <!--<xacro:include filename="$(find sdl_robot_description)/urdf/connecting_hardware_dual_arm.urdf.xacro" />-->
+
+  <joint name="${prefix}hardware_to_mir" type="fixed">
+    <!--<parent link="mir/base_footprint"/>-->
+    <!--<parent link="${tf_prefix}/base_footprint"/>-->
+    <parent link="${prefix}base_footprint"/>
+    <child link="${prefix}connecting_hardware"/>
+    <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+    <!--<origin xyz="0.35 0.27 -0.05" rpy="0.0 0.0 0.0"/>-->
+  </joint>
+
+  <!-- ur5e arm -->
+  <xacro:include filename="$(find ur_description)/urdf/inc/ur5e_macro.xacro" />
+  <xacro:ur5e_robot prefix="ur5e_" />
+
+  <joint name="hardware_to_ur5e" type="fixed">
+    <parent link="connecting_hardware"/>
+    <child link="ur5e_base_link"/>
+    <!--<origin xyz="-0.25 -0.27 1.0" rpy="0.7854 0.0 1.57"/>-->
+    <origin xyz="0.1 0.0 0.95" rpy="0.7854 0.0 1.57"/>
+    <!--<origin xyz="-0.25 -0.27 1.0" rpy="0.7854 0.0 1.57"/>-->
+  </joint>
+
+  <!-- ur16e arm -->
+  <xacro:include filename="$(find ur_description)/urdf/inc/ur16e_macro.xacro" />
+  <xacro:ur16e_robot prefix="ur16e_" />
+
+  <joint name="hardware_to_ur16e" type="fixed">
+    <parent link="connecting_hardware"/>
+    <child link="ur16e_base_link"/>
+    <!--<origin xyz="-0.4 -0.27 1.0" rpy="-0.7854 0.0 1.57"/>-->
+    <origin xyz="-0.1 0.0 0.95" rpy="-0.7854 0.0 1.57"/>
+  </joint>
+
+  <!-- gripper -->
+  <xacro:include filename="$(find sdl_robot_description)/urdf/2f140.urdf.xacro" />
+
+  <!--<joint name="${prefix}gripper_to_ur" type="fixed" >-->
+  <joint name="gripper_to_ur5e" type="fixed" >
+    <!--<parent link="${prefix}ur5e_tool0" />-->
+    <parent link="ur5e_tool0" />
+    <!--<child link="${prefix}robotiq_arg2f_base_link" />-->
+    <child link="${prefix}robotiq_arg2f_base_link" />
+  </joint>
+
+  <!-- camera -->
+  <xacro:include filename="$(find sdl_robot_description)/urdf/camera.urdf.xacro" />
+
+  <!--<joint name="${prefix}camera_to_hardware" type="fixed">-->
+  <joint name="camera_to_hardware" type="fixed">
+    <!--<parent link="${prefix}connecting_hardware"/>-->
+    <parent link="connecting_hardware"/>
+    <!--<child link="${prefix}camera"/>-->
+    <child link="${prefix}camera"/>
+    <origin xyz=".5 0 .9" rpy="0 0 0"/>
+  </joint>
+
+</robot>
